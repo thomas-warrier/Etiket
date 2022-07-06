@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable-nodpi/_bg__homepage_ek2_shape.xml" value="0.3026041666666667" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable-nodpi/_bg__homepage_shape.xml" value="0.10208333333333333" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable-nodpi/_bg__landpage___white_ek2_shape.xml" value="0.3026041666666667" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable-nodpi/input_ek4_shape.xml" value="0.3026041666666667" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable-nodpi/rectangle_4047_shape.xml" value="0.10208333333333333" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable-nodpi/rectangle_4048_shape.xml" value="0.10208333333333333" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable-nodpi/rectangle_4_shape.xml" value="0.10208333333333333" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.10208333333333333" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable/ic_launcher_background.xml" value="0.10208333333333333" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable/ic_qr_code.xml" value="0.3026041666666667" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/activity_home_page.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/activity_main.xml" value="0.16770833333333332" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/boutton_menu_bar.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/boutton_menu_bar_variant2.xml" value="0.2864583333333333" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/etiket.xml" value="0.20989583333333334" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/homepage.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/landpage___white.xml" value="0.2864583333333333" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2520833333333333" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2520833333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="jbr-11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

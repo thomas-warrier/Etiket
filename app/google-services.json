@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "145978935089",
+    "project_id": "etiket-9528b",
+    "storage_bucket": "etiket-9528b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145978935089:android:6bf5ef05417ca598cc5210",
+        "android_client_info": {
+          "package_name": "com.app.etiket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145978935089-f7u7uas2l05vbcic2botkrs8m5gjiuuo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZK6HtpmO8DnLrr1Eqc0-Gvp_BAdfHrOc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145978935089-f7u7uas2l05vbcic2botkrs8m5gjiuuo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

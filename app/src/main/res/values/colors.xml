@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- homepage colors -->
+
+	<color name="colorPrimary">#008577</color>
+	<color name="colorPrimaryDark">#00574B</color>
+	<color name="colorAccent">#D81B60</color>
+	<color name="purple_200">#FFBB86FC</color>
+	<color name="purple_500">#FF6200EE</color>
+	<color name="purple_700">#FF3700B3</color>
+	<color name="teal_200">#FF03DAC5</color>
+	<color name="teal_700">#FF018786</color>
+	<color name="black">#FF000000</color>
+	<color name="white">#FFFFFFFF</color>
+
+	<color name="_bg__homepage_ek2_color">#FFFFFF</color>
+	<color name="rectangle_4_color">#8449E5</color>
+	<color name="etiket_color">#000000</color>
+	<color name="_bg__ticketpage_ek2_color">#F2F2F2</color>
+	<color name="vos_enseignes_color">#69778E</color>
+	<color name="what_is_the_replication_crisis__color">#091F44</color>
+	<color name="ticket_r_cent_color">#526581</color>
+	<color name="_bg__landpage___white_ek2_color">#FAFAFE</color>
+	<color name="rectangle_4047_color">#BFDBFE</color>
+	<color name="pas_de_compte___color">#828282</color>
+	<color name="rectangle_5_color">#E8ECF0</color>
+	<color name="ou_se_connecter_avec_color">#64748B</color>
+	<color name="connexion_ek1_color">#1E293B</color>
+	<color name="input_color">#CBD5E1</color>
+	<color name="email_ou_nom_d_utilisateur_ek2_color">#475569</color>
+	<color name="oublier_color">#000113</color>
+	<color name="rectangle_6_color">#F6F6F6</color>
+	<color name="gaga_gougou_color">#09244B</color>
+	<color name="_bg__boutton_menu_bar_ek10_color">#CAE2FF</color>
+</resources>
