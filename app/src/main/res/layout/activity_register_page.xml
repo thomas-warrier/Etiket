@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="exportkit.RegisterPage">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+
+        >
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="@string/s_inscrire"
+                      android:textSize="24sp"
+                      android:fontFamily="@font/roboto_regular"
+                      android:textStyle="bold"
+                      android:textColor="@color/black"
+            />
+
+
+            <EditText android:layout_width="300dp" android:layout_height="75dp"
+                      android:id="@+id/email_input_register"
+                      android:inputType="textEmailAddress"
+                      android:hint="@string/email"
+                      android:textColorHint="#475569"
+                      android:fontFamily="@font/roboto_regular"
+            />
+            <EditText android:layout_width="300dp" android:layout_height="75dp"
+                      android:id="@+id/username_input_register"
+                      android:inputType="text"
+                      android:hint="@string/nom_d_utilisateur"
+                      android:textColorHint="#475569"
+                      android:fontFamily="@font/roboto_regular"
+            />
+            <EditText android:layout_width="300dp" android:layout_height="75dp"
+                      android:id="@+id/password_login_input"
+                      android:inputType="textPassword"
+                      android:hint="@string/mot_de_passe"
+                      android:textColorHint="#475569"
+                      android:fontFamily="@font/roboto_regular"
+            />
+            <Button android:layout_width="300dp" android:layout_height="40dp"
+                    android:text="@string/s_inscrire"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/black"
+                    android:fontFamily="@font/roboto_regular"
+            />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="@string/s_inscrire_avec"
+                      android:textSize="14sp"
+                      android:textColor="#64748B"
+                      android:fontFamily="@font/roboto_regular"
+            />
+            <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                         android:src="@drawable/ic_google_connexion"
+                         android:background="@android:color/transparent"
+                         android:contentDescription="@string/google_logo"
+            />
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:gravity="center_horizontal"
+            >
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="@string/deja_un_compte"
+                          android:textSize="14sp"
+                          android:textColor="#828282"
+                          android:fontFamily="@font/roboto_regular"
+                />
+                <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/se_connecter_button_gris"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:background="@android:color/transparent"
+                        android:textColor="#828282"
+                        android:fontFamily="@font/roboto_regular"
+
+                />
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

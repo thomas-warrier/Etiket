@@ -10,4 +10,13 @@
     <string name="se_connecter">Se Connecter</string>
     <string name="ou_se_connecter_avec">Ou se connecter avec</string>
     <string name="pas_de_compte">Pas de compte ?</string>
+    <string name="s_inscrire">S\'inscrire</string>
+    <string name="s_inscrire_avec">S\'inscrire avec</string>
+    <string name="se_connecter_button_gris"><u>Se Connecter</u></string>
+    <string name="email">Email</string>
+    <string name="nom_d_utilisateur">Nom d\'utilisateur</string>
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="google_logo">google logo</string>
+    <string name="deja_un_compte">Déjà un compte ?</string>
+    <string name="email_ou_nom_d_utilisateur">Email ou nom d\'utilisateur</string>
 </resources>

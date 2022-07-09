@@ -6,6 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="exportkit.LoginPage">
+
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -16,37 +17,51 @@
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:text="@string/connexion"
             android:textSize="24sp"
+            android:fontFamily="@font/roboto_regular"
         />
-        <EditText android:layout_width="300dp" android:layout_height="25dp"
-                  android:id="@+id/email_or_password_input"
+
+
+        <EditText android:layout_width="300dp" android:layout_height="50dp"
+                  android:id="@+id/email_or_username_input"
                   android:inputType="text"
-                  android:hint="Email ou nom d'utilisateur"
+                  android:hint="@string/email_ou_nom_d_utilisateur"
                   android:textColorHint="#475569"
+                  android:fontFamily="@font/roboto_regular"
         />
-        <EditText android:layout_width="300dp" android:layout_height="25dp"
+        <EditText android:layout_width="300dp" android:layout_height="50dp"
                   android:id="@+id/password_login_input"
                   android:inputType="textPassword"
-                  android:hint="Mot de passe"
+                  android:hint="@string/mot_de_passe"
                   android:textColorHint="#475569"
+                  android:fontFamily="@font/roboto_regular"
         />
         <Button android:layout_width="300dp" android:layout_height="40dp"
                 android:text="@string/se_connecter"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/black"
+                android:fontFamily="@font/roboto_regular"
         />
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:text="@string/ou_se_connecter_avec"
                   android:textSize="14sp"
                   android:textColor="#64748B"
+                  android:fontFamily="@font/roboto_regular"
         />
         <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
                      android:src="@drawable/ic_google_connexion"
-                     android:background=""
-        />
+                     android:background="@android:color/transparent"
+                     android:contentDescription="@string/google_logo"/>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:text="@string/pas_de_compte"
                   android:textSize="14sp"
-                  android:textColor="#64748B"
+                  android:textColor="#828282"
+                  android:fontFamily="@font/roboto_regular"
+        />
+        <Button android:layout_width="300dp" android:layout_height="40dp"
+                android:text="@string/s_inscrire"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/black"
+                android:fontFamily="@font/roboto_regular"
         />
 
 

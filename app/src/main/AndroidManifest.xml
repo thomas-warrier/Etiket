@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="exportkit.figma">
+          package="exportkit.figma"
+>
 
-    <application android:allowBackup="true">
+    <application android:allowBackup="true"
+                 android:theme="@style/Theme.AppCompat"
+    >
+        <activity
+                android:name="exportkit.RegisterPage"
+                android:exported="true"
+        />
         <activity
                 android:name="exportkit.LoginPage"
-                android:exported="true">
+                android:exported="true"
+        >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
@@ -21,25 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-                android:name=".homepage_activity"
-                android:configChanges="orientation|keyboardHidden|screenSize"
-                android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-        <activity android:name=".ticketpage_activity"/>
-        <activity android:name=".landpage___white_activity"/>
-        <activity android:name=".registerpage_activity"/>
-        <activity android:name=".search_variant2_activity"/>
-        <activity android:name=".search_activity"/>
-        <activity android:name=".nav_button_activity"/>
-        <activity android:name=".nav_bar_activity"/>
-        <activity android:name=".boutton_menu_bar_activity"/>
-        <activity android:name=".boutton_menu_bar_variant2_activity"/>
     </application>
 
 </manifest>
