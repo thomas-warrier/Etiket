@@ -21,12 +21,14 @@ import exportkit.figma.R;
 public class RegisterPage extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private final static int RC_SIGN_IN = 1234;
-    ImageButton google;
     private FirebaseAuth mAuth;
 
     @Override
     //au démarage de l'application on vérifie si l'utilisateur est connecté
     //si c'est le cas alors on le renvoie sur la HomePage
+    //###################################################################################################
+    //####################### Méthode qui pourra potentiellement être enlevé ############################
+    //###################################################################################################
     protected void onStart(){
         super.onStart();
         FirebaseUser user = mAuth.getCurrentUser();

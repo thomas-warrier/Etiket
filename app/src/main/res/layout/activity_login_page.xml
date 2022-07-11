@@ -6,21 +6,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="exportkit.LoginPage">
-
+    <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
+               android:src="@drawable/ic_fond_login"
+    />
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
-
     >
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                   android:src="@drawable/ic_etiket_logo"
+        />
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:text="@string/connexion"
             android:textSize="24sp"
             android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/black"
         />
-
-
         <EditText android:layout_width="300dp" android:layout_height="50dp"
                   android:id="@+id/email_or_username_input"
                   android:inputType="text"
@@ -48,6 +51,7 @@
                   android:fontFamily="@font/roboto_regular"
         />
         <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     android:id="@+id/googleLogInButton"
                      android:src="@drawable/ic_google_connexion"
                      android:background="@android:color/transparent"
                      android:contentDescription="@string/google_logo"/>

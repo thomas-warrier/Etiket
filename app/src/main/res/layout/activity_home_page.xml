@@ -18,9 +18,8 @@
                      android:contentDescription="@string/navigation_button"
                      tools:ignore="RedundantDescriptionCheck"
         />
-        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
-                  android:text="@string/etiket"
-                  android:textSize="24sp"
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:src="@drawable/ic_etiket_logo"
                   android:layout_gravity="center"
                   android:gravity="center"
                   android:layout_weight="1"
