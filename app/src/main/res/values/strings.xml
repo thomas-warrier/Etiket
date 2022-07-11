@@ -12,7 +12,9 @@
     <string name="pas_de_compte">Pas de compte ?</string>
     <string name="s_inscrire">S\'inscrire</string>
     <string name="s_inscrire_avec">S\'inscrire avec</string>
-    <string name="se_connecter_button_gris"><u>Se Connecter</u></string>
+    <string name="se_connecter_button_gris">
+        <u>Se Connecter</u>
+    </string>
     <string name="email">Email</string>
     <string name="nom_d_utilisateur">Nom d\'utilisateur</string>
     <string name="mot_de_passe">Mot de passe</string>

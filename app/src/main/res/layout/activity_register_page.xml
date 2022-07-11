@@ -55,6 +55,7 @@
                       android:fontFamily="@font/roboto_regular"
             />
             <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                         android:id="@+id/googleSignInButton"
                          android:src="@drawable/ic_google_connexion"
                          android:background="@android:color/transparent"
                          android:contentDescription="@string/google_logo"
