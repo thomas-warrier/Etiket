@@ -8,6 +8,8 @@
         tools:context="exportkit.LoginPage">
     <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
                android:src="@drawable/ic_fond_login"
+               android:contentDescription="image de fond"
+               android:scaleType="fitXY"
     />
     <LinearLayout
             android:orientation="vertical"
@@ -17,12 +19,13 @@
     >
         <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
                    android:src="@drawable/ic_etiket_logo"
+                   android:contentDescription="logo Etiket"
         />
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="@string/connexion"
-            android:textSize="24sp"
-            android:fontFamily="@font/roboto_regular"
-            android:textColor="@color/black"
+                  android:text="@string/connexion"
+                  android:textSize="24sp"
+                  android:fontFamily="@font/roboto_regular"
+                  android:textColor="@color/black"
         />
         <EditText android:layout_width="300dp" android:layout_height="50dp"
                   android:id="@+id/email_or_username_input"
@@ -30,6 +33,7 @@
                   android:hint="@string/email_ou_nom_d_utilisateur"
                   android:textColorHint="#475569"
                   android:fontFamily="@font/roboto_regular"
+                  android:backgroundTint="#CBD5E1"
         />
         <EditText android:layout_width="300dp" android:layout_height="50dp"
                   android:id="@+id/password_login_input"
@@ -37,13 +41,15 @@
                   android:hint="@string/mot_de_passe"
                   android:textColorHint="#475569"
                   android:fontFamily="@font/roboto_regular"
+                  android:backgroundTint="#CBD5E1"
         />
         <Button android:layout_width="300dp" android:layout_height="40dp"
                 android:text="@string/se_connecter"
                 android:textColor="@color/white"
-                android:backgroundTint="@color/black"
+                android:background="@drawable/ic_shape_button_black"
                 android:fontFamily="@font/roboto_regular"
-        />
+                android:textAllCaps="false"
+                tools:ignore="TouchTargetSizeCheck"/>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:text="@string/ou_se_connecter_avec"
                   android:textSize="14sp"
@@ -64,8 +70,10 @@
         <Button android:layout_width="300dp" android:layout_height="40dp"
                 android:text="@string/s_inscrire"
                 android:textColor="@color/white"
-                android:backgroundTint="@color/black"
                 android:fontFamily="@font/roboto_regular"
+                android:background="@drawable/ic_shape_button_black"
+                android:textAllCaps="false"
+                tools:ignore="TouchTargetSizeCheck"
         />
 
 

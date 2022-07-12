@@ -8,6 +8,7 @@
 
         <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
                    android:src="@drawable/ic_fond_login"
+                   android:scaleType="fitXY"
         />
     <!-- ###############################    Le linear layout   #################################### -->
         <LinearLayout
@@ -30,33 +31,37 @@
             />
 
 
-            <EditText android:layout_width="300dp" android:layout_height="75dp"
+            <EditText android:layout_width="300dp" android:layout_height="50dp"
                       android:id="@+id/email_input_register"
                       android:inputType="textEmailAddress"
                       android:hint="@string/email"
                       android:textColorHint="#475569"
                       android:fontFamily="@font/roboto_regular"
+                      android:backgroundTint="#CBD5E1"
             />
-            <EditText android:layout_width="300dp" android:layout_height="75dp"
+            <EditText android:layout_width="300dp" android:layout_height="50dp"
                       android:id="@+id/username_input_register"
                       android:inputType="text"
                       android:hint="@string/nom_d_utilisateur"
                       android:textColorHint="#475569"
                       android:fontFamily="@font/roboto_regular"
+                      android:backgroundTint="#CBD5E1"
             />
-            <EditText android:layout_width="300dp" android:layout_height="75dp"
+            <EditText android:layout_width="300dp" android:layout_height="50dp"
                       android:id="@+id/password_login_input"
                       android:inputType="textPassword"
                       android:hint="@string/mot_de_passe"
                       android:textColorHint="#475569"
                       android:fontFamily="@font/roboto_regular"
+                      android:backgroundTint="#CBD5E1"
             />
             <Button android:layout_width="300dp" android:layout_height="40dp"
                     android:text="@string/s_inscrire"
                     android:textColor="@color/white"
-                    android:backgroundTint="@color/black"
                     android:fontFamily="@font/roboto_regular"
-                    android:capitalize="none"/>
+                    android:background="@drawable/ic_shape_button_black"
+                    android:textAllCaps="false"
+                    tools:ignore="TouchTargetSizeCheck"/>
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:text="@string/s_inscrire_avec"
                       android:textSize="14sp"
@@ -86,7 +91,7 @@
                         android:background="@android:color/transparent"
                         android:textColor="#828282"
                         android:fontFamily="@font/roboto_regular"
-
+                        android:textAllCaps="false"
                 />
 
             </LinearLayout>
