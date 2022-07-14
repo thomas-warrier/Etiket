@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context="exportkit.RegisterPage">
 
         <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
@@ -48,7 +48,7 @@
                       android:backgroundTint="#CBD5E1"
             />
             <EditText android:layout_width="300dp" android:layout_height="50dp"
-                      android:id="@+id/password_login_input"
+                      android:id="@+id/password_register_input"
                       android:inputType="textPassword"
                       android:hint="@string/mot_de_passe"
                       android:textColorHint="#475569"
@@ -56,6 +56,7 @@
                       android:backgroundTint="#CBD5E1"
             />
             <Button android:layout_width="300dp" android:layout_height="40dp"
+                    android:id="@+id/register_button"
                     android:text="@string/s_inscrire"
                     android:textColor="@color/white"
                     android:fontFamily="@font/roboto_regular"
@@ -101,4 +102,18 @@
 
 
         </LinearLayout>
+    <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+    />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

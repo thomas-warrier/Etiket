@@ -2,9 +2,9 @@ package exportkit;
 
 import android.content.Intent;
 import android.provider.ContactsContract;
+import android.util.Patterns;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,12 +16,27 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.*;
+import com.google.firebase.database.FirebaseDatabase;
 import exportkit.figma.R;
 
-public class RegisterPage extends AppCompatActivity {
+public class RegisterPage extends AppCompatActivity implements View.OnClickListener {
+
+
+    //################################### google Sign in ########################################
     private GoogleSignInClient mGoogleSignInClient;
     private final static int RC_SIGN_IN = 1234;
+    //################################## end of google Sign in #################################
+
+    //################################# register with email and passaword ######################
+    private TextView registerUserButton;
+    private EditText editTextEmail,editTextUserName,editTextPassword;
+    private ProgressBar progressBar;
+    //################################ end of register with email and password #################
     private FirebaseAuth mAuth;
+
+
+
+
 
     @Override
     //au démarage de l'application on vérifie si l'utilisateur est connecté
@@ -42,6 +57,7 @@ public class RegisterPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page);
 
+        //###############################   Google sign in   #################################
         mAuth = FirebaseAuth.getInstance();
 
         createRequest();
@@ -52,8 +68,28 @@ public class RegisterPage extends AppCompatActivity {
                 signIn();
             }
         });
+        //############################# End of Google Sign In  ###############################
+
+        //############################ Register with email and password ######################
+        registerUserButton=(Button)findViewById(R.id.register_button);
+        registerUserButton.setOnClickListener(this);
+        editTextEmail=(EditText)findViewById(R.id.email_input_register);
+        editTextUserName=(EditText)findViewById(R.id.username_input_register);
+        editTextPassword=(EditText)findViewById(R.id.password_register_input);
+        //############################ end of register with email and password ###############
     }
 
+
+
+
+
+
+
+
+
+
+
+    //######################################## Google Sign In ###################################################
 
     private void createRequest() {
         // Configure Google Sign In
@@ -103,6 +139,94 @@ public class RegisterPage extends AppCompatActivity {
                         } else {
                             Toast.makeText(RegisterPage.this, "Authentification échoué", Toast.LENGTH_SHORT).show();
                         }// ...
+                    }
+                });
+    }
+
+    //############################################# END of Google sign In #################################################################
+
+
+
+
+
+
+
+
+
+    @Override
+    public void onClick(View view) {
+            if (view.getId()==R.id.register_button){
+                registerUserEmailPassword();
+            }
+    }
+
+    private void registerUserEmailPassword() {
+        String email=editTextEmail.getText().toString().trim();
+        String userName=editTextUserName.getText().toString().trim();
+        String password=editTextPassword.getText().toString().trim();
+
+        if(email.isEmpty()) {
+            editTextEmail.setError("Une adresse e-mail est obligatoire");
+            editTextEmail.requestFocus();
+            return;
+        }
+
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                editTextEmail.setError("Adresse e-mail invalide");
+                editTextEmail.requestFocus();
+                return;
+        }
+
+        if(userName.isEmpty()){
+            editTextUserName.setError("Un nom d'utilisateur est obligatoire");
+            editTextUserName.requestFocus();
+            return;
+        }
+
+        /*rajouter le cas ou le nom d'utilisateur est deja pris
+        if(userName.exist()){
+            editTextUserName.setError("ce nom d'utilisateur est déjà pris");
+            editTextUserName.requestFocus();
+        }
+        */
+
+        if(password.isEmpty()){
+            editTextPassword.setError("Mot de passe obligatoire");
+            editTextPassword.requestFocus();
+            return;
+        }
+        //firebase n'accepte pas les mdp en dessous de 6 charactères
+        if (password.length() < 6){
+            editTextPassword.setError("Le mot de passe doit contenir au moins 6 charactères");
+            editTextPassword.requestFocus();
+            return;
+        }
+        progressBar.setVisibility(View.VISIBLE);
+        mAuth.createUserWithEmailAndPassword(email,password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()) {
+                            User user = new User(userName,email);//if the user have been registered sucessfully
+
+                            FirebaseDatabase.getInstance().getReference("Users")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                                Toast.makeText(RegisterPage.this,"Authentification réussie",Toast.LENGTH_SHORT).show();
+                                                progressBar.setVisibility(View.GONE);
+                                            }else{
+                                                Toast.makeText(RegisterPage.this, "Authentification échouée,Réessayer plus tard", Toast.LENGTH_LONG).show();
+                                                progressBar.setVisibility(View.GONE);
+                                            }
+                                        }
+                                    });
+                        }else{
+                            Toast.makeText(RegisterPage.this, "Authentification échouée,Réessayer plus tard", Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
+                        }
                     }
                 });
     }

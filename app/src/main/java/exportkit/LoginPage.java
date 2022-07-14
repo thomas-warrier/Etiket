@@ -2,7 +2,7 @@ package exportkit;
 
 import android.content.Intent;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,10 +18,12 @@ import com.google.firebase.auth.*;
 import exportkit.figma.R;
 
 
-public class LoginPage extends AppCompatActivity {
+public class LoginPage extends AppCompatActivity implements View.OnClickListener {
     private GoogleSignInClient mGoogleSignInClient;
     private final static int RC_SIGN_IN = 1234;
     private FirebaseAuth mAuth;
+
+    private Button registerButton;
 
 
     @Override
@@ -50,7 +52,13 @@ public class LoginPage extends AppCompatActivity {
                 signIn();
             }
         });
+
+        registerButton = (Button) findViewById(R.id.button_switch_to_register_activity);
+        registerButton.setOnClickListener(this);
     }
+
+
+
     private void createRequest() {
         // Configure Google Sign In
         GoogleSignInOptions gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -101,5 +109,14 @@ public class LoginPage extends AppCompatActivity {
                         }// ...
                     }
                 });
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.button_switch_to_register_activity:
+                startActivity(new Intent(this,RegisterPage.class));
+                break;
+        }
     }
 }

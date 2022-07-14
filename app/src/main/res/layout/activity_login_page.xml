@@ -68,6 +68,7 @@
                   android:fontFamily="@font/roboto_regular"
         />
         <Button android:layout_width="300dp" android:layout_height="40dp"
+                android:id="@+id/button_switch_to_register_activity"
                 android:text="@string/s_inscrire"
                 android:textColor="@color/white"
                 android:fontFamily="@font/roboto_regular"
@@ -79,6 +80,18 @@
 
     </LinearLayout>
 
-
+    <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
