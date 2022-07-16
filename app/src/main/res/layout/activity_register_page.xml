@@ -10,25 +10,29 @@
                    android:src="@drawable/ic_fond_login"
                    android:scaleType="fitXY"
         />
-    <!-- ###############################    Le linear layout   #################################### -->
-        <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
 
-        >
 
             <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                       android:id="@+id/logo_etiket"
                        android:src="@drawable/ic_etiket_logo"
+                       app:layout_constraintRight_toRightOf="parent"
+                       app:layout_constraintLeft_toLeftOf="parent"
+                       app:layout_constraintTop_toTopOf="parent"
+                       android:layout_marginTop="40dp"
             />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:text="@string/s_inscrire"
-                      android:textSize="24sp"
-                      android:fontFamily="@font/roboto_regular"
-                      android:textStyle="bold"
-                      android:textColor="@color/black"
-            />
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/inscription_text_register_page"
+              android:text="@string/s_inscrire"
+              android:textSize="32sp"
+              android:fontFamily="@font/roboto_bold"
+              android:textStyle="bold"
+              android:textColor="@color/black"
+              app:layout_constraintRight_toRightOf="parent"
+              app:layout_constraintLeft_toLeftOf="parent"
+              app:layout_constraintTop_toBottomOf="@id/logo_etiket"
+              android:layout_marginTop="100dp"
+
+    />
 
 
             <EditText android:layout_width="300dp" android:layout_height="50dp"
@@ -38,6 +42,10 @@
                       android:textColorHint="#475569"
                       android:fontFamily="@font/roboto_regular"
                       android:backgroundTint="#CBD5E1"
+                      app:layout_constraintRight_toRightOf="parent"
+                      app:layout_constraintLeft_toLeftOf="parent"
+                      app:layout_constraintTop_toBottomOf="@id/inscription_text_register_page"
+                      android:layout_marginTop="30dp"
             />
             <EditText android:layout_width="300dp" android:layout_height="50dp"
                       android:id="@+id/username_input_register"
@@ -46,6 +54,10 @@
                       android:textColorHint="#475569"
                       android:fontFamily="@font/roboto_regular"
                       android:backgroundTint="#CBD5E1"
+                      app:layout_constraintRight_toRightOf="parent"
+                      app:layout_constraintLeft_toLeftOf="parent"
+                      app:layout_constraintTop_toBottomOf="@id/email_input_register"
+                      android:layout_marginTop="20dp"
             />
             <EditText android:layout_width="300dp" android:layout_height="50dp"
                       android:id="@+id/password_register_input"
@@ -54,6 +66,10 @@
                       android:textColorHint="#475569"
                       android:fontFamily="@font/roboto_regular"
                       android:backgroundTint="#CBD5E1"
+                      app:layout_constraintRight_toRightOf="parent"
+                      app:layout_constraintLeft_toLeftOf="parent"
+                      app:layout_constraintTop_toBottomOf="@id/username_input_register"
+                      android:layout_marginTop="20dp"
             />
             <Button android:layout_width="300dp" android:layout_height="40dp"
                     android:id="@+id/register_button"
@@ -62,28 +78,49 @@
                     android:fontFamily="@font/roboto_regular"
                     android:background="@drawable/ic_shape_button_black"
                     android:textAllCaps="false"
-                    tools:ignore="TouchTargetSizeCheck"/>
+                    tools:ignore="TouchTargetSizeCheck"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/password_register_input"
+                    android:layout_marginTop="30dp"
+            />
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/sinscrire_avec_text"
                       android:text="@string/s_inscrire_avec"
                       android:textSize="14sp"
                       android:textColor="#64748B"
                       android:fontFamily="@font/roboto_regular"
+                      app:layout_constraintRight_toRightOf="parent"
+                      app:layout_constraintLeft_toLeftOf="parent"
+                      app:layout_constraintTop_toBottomOf="@id/register_button"
+                      android:layout_marginTop="30dp"
             />
             <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
                          android:id="@+id/googleSignInButton"
                          android:src="@drawable/ic_google_connexion"
                          android:background="@android:color/transparent"
                          android:contentDescription="@string/google_logo"
+                         app:layout_constraintRight_toRightOf="parent"
+                         app:layout_constraintLeft_toLeftOf="parent"
+                         app:layout_constraintTop_toBottomOf="@id/sinscrire_avec_text"
+                         android:layout_marginTop="10dp"
             />
-            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:orientation="horizontal"
                           android:gravity="center_horizontal"
+                                                               app:layout_constraintRight_toRightOf="parent"
+                                                               app:layout_constraintLeft_toLeftOf="parent"
+                                                               app:layout_constraintBottom_toBottomOf="parent"
+                                                               android:layout_marginBottom="5dp"
             >
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:id="@+id/deja_un_compte_texte"
                           android:text="@string/deja_un_compte"
                           android:textSize="14sp"
                           android:textColor="#828282"
                           android:fontFamily="@font/roboto_regular"
+                          app:layout_constraintTop_toTopOf="parent"
+                          app:layout_constraintBottom_toBottomOf="parent"
                 />
                 <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="@string/se_connecter_button_gris"
@@ -93,15 +130,13 @@
                         android:textColor="#828282"
                         android:fontFamily="@font/roboto_regular"
                         android:textAllCaps="false"
+                        app:layout_constraintLeft_toRightOf="@id/deja_un_compte_texte"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginLeft="5dp"
                 />
 
-            </LinearLayout>
-
-
-
-
-
-        </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
     <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleLarge"
