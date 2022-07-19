@@ -46,7 +46,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
     //###################################################################################################
     protected void onStart(){
         super.onStart();
-        FirebaseUser user = mAuth.getCurrentUser();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user!=null){
             Intent intent = new Intent(getApplicationContext(),HomePage.class);
             startActivity(intent);
@@ -76,6 +76,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         editTextEmail=(EditText)findViewById(R.id.email_input_register);
         editTextUserName=(EditText)findViewById(R.id.username_input_register);
         editTextPassword=(EditText)findViewById(R.id.password_register_input);
+        progressBar = (ProgressBar)findViewById(R.id.progressBar_register);
         //############################ end of register with email and password ###############
     }
 
@@ -161,23 +162,23 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
     }
 
     private void registerUserEmailPassword() {
-        String email=editTextEmail.getText().toString().trim();
-        String userName=editTextUserName.getText().toString().trim();
-        String password=editTextPassword.getText().toString().trim();
+        String email = editTextEmail.getText().toString().trim();
+        String userName = editTextUserName.getText().toString().trim();
+        String password = editTextPassword.getText().toString().trim();
 
-        if(email.isEmpty()) {
+        if (email.isEmpty()) {
             editTextEmail.setError("Une adresse e-mail est obligatoire");
             editTextEmail.requestFocus();
             return;
         }
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                editTextEmail.setError("Adresse e-mail invalide");
-                editTextEmail.requestFocus();
-                return;
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editTextEmail.setError("Adresse e-mail invalide");
+            editTextEmail.requestFocus();
+            return;
         }
 
-        if(userName.isEmpty()){
+        if (userName.isEmpty()) {
             editTextUserName.setError("Un nom d'utilisateur est obligatoire");
             editTextUserName.requestFocus();
             return;
@@ -190,40 +191,40 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         }
         */
 
-        if(password.isEmpty()){
+        if (password.isEmpty()) {
             editTextPassword.setError("Mot de passe obligatoire");
             editTextPassword.requestFocus();
             return;
         }
         //firebase n'accepte pas les mdp en dessous de 6 charactères
-        if (password.length() < 6){
+        if (password.length() < 6) {
             editTextPassword.setError("Le mot de passe doit contenir au moins 6 charactères");
             editTextPassword.requestFocus();
             return;
         }
         progressBar.setVisibility(View.VISIBLE);
-        mAuth.createUserWithEmailAndPassword(email,password)
+        mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()) {
-                            User user = new User(userName,email);//if the user have been registered sucessfully
+                        if (task.isSuccessful()) {
+                            User user = new User(userName, email);//if the user have been registered sucessfully
 
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            if(task.isSuccessful()){
-                                                Toast.makeText(RegisterPage.this,"Authentification réussie",Toast.LENGTH_SHORT).show();
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(RegisterPage.this, "Authentification réussie", Toast.LENGTH_LONG).show();
                                                 progressBar.setVisibility(View.GONE);
-                                            }else{
+                                            } else {
                                                 Toast.makeText(RegisterPage.this, "Authentification échouée,Réessayer plus tard", Toast.LENGTH_LONG).show();
                                                 progressBar.setVisibility(View.GONE);
                                             }
                                         }
                                     });
-                        }else{
+                        } else {
                             Toast.makeText(RegisterPage.this, "Authentification échouée,Réessayer plus tard", Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);
                         }

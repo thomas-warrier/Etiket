@@ -1,7 +1,7 @@
 package exportkit;
 
 public class User {
-    String userName,email;
+    public String userName,email;
 
     public User(){
     }

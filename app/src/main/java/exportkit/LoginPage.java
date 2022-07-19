@@ -31,7 +31,7 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
     //si c'est le cas alors on le renvoie sur la HomePage
     protected void onStart(){
         super.onStart();
-        FirebaseUser user = mAuth.getCurrentUser();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user!=null){
             Intent intent = new Intent(getApplicationContext(),HomePage.class);
             startActivity(intent);
