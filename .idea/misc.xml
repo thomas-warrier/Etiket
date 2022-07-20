@@ -12,12 +12,17 @@
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable-nodpi/rectangle_4_shape.xml" value="0.10208333333333333" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.10208333333333333" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable/ic_etiket_logo.xml" value="0.31666666666666665" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable/ic_favoris_nav.xml" value="0.31666666666666665" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable/ic_fond_login.xml" value="0.31666666666666665" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable/ic_google_connexion.xml" value="0.3026041666666667" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable/ic_launcher_background.xml" value="0.10208333333333333" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable/ic_nav_button.xml" value="0.3026041666666667" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable/ic_parametre_nav.xml" value="0.31666666666666665" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable/ic_qr_code.xml" value="0.3026041666666667" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable/ic_qr_code_nav.xml" value="0.31666666666666665" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable/ic_separator.xml" value="0.31666666666666665" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable/ic_shape_button_black.xml" value="0.31666666666666665" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable/ic_ticket_nav.xml" value="0.31666666666666665" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/font/roboto.xml" value="0.3296875" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/activity_home_page.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/activity_login_page.xml" value="0.176" />
@@ -25,9 +30,11 @@
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/activity_register_page.xml" value="0.46647230320699706" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/boutton_menu_bar.xml" value="0.30052083333333335" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/boutton_menu_bar_variant2.xml" value="0.2864583333333333" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/drawer_layout.xml" value="0.5" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/etiket.xml" value="0.20989583333333334" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/homepage.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/landpage___white.xml" value="0.2864583333333333" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/nav_header.xml" value="0.2994791666666667" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/menu/drawer_menu.xml" value="0.7333333333333334" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2520833333333333" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2520833333333333" />

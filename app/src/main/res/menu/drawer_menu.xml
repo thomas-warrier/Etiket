@@ -7,17 +7,18 @@
         android:icon="@drawable/ic_qr_code_nav"
         android:title="QR code"
         />
-        <item android:id="ticket_nav"
+        <item android:id="@+id/ticket_nav"
               android:icon="@drawable/ic_ticket_nav"
               android:title="Ticket"
         />
         <item android:id="@+id/favorite_nav"
         android:icon="@drawable/ic_favoris_nav"
               android:title="Favoris"
+
+        />
+        <item android:id="@+id/parameters_nav"
+              android:icon="@drawable/ic_parametre_nav"
+              android:title="Paramètres"
         />
     </group>
-    <item android:id="@+id/parameters_nav"
-          android:icon="@drawable/ic_parametre_nav"
-          android:title="Paramètres"
-    />
 </menu>
