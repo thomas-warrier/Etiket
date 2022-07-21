@@ -20,6 +20,6 @@
     <string name="mot_de_passe">Mot de passe</string>
     <string name="google_logo">google logo</string>
     <string name="deja_un_compte">Déjà un compte ?</string>
-    <string name="email_ou_nom_d_utilisateur">Email ou nom d\'utilisateur</string>
+    <string name="email_input_login">Email</string>
     <string name="favoris">Favoris</string>
 </resources>

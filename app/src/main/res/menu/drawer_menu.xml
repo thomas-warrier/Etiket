@@ -12,7 +12,7 @@
               android:title="Ticket"
         />
         <item android:id="@+id/favorite_nav"
-        android:icon="@drawable/ic_favoris_nav"
+              android:icon="@drawable/ic_favoris_nav"
               android:title="Favoris"
 
         />

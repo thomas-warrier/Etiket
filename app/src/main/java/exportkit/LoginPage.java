@@ -1,8 +1,11 @@
 package exportkit;
 
 import android.content.Intent;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +27,9 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
     private FirebaseAuth mAuth;
 
     private Button registerButton;
+    private EditText editTextEmail,editTextPassword;
+    private Button signIn; //button to sign in with email and password
+    private ProgressBar progressBar;
 
 
     @Override
@@ -55,6 +61,14 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
 
         registerButton = (Button) findViewById(R.id.button_switch_to_register_activity);
         registerButton.setOnClickListener(this);
+
+        signIn = (Button) findViewById(R.id.se_connecter_button);
+        signIn.setOnClickListener(this);
+
+        editTextEmail = (EditText) findViewById(R.id.email_input_login);
+        editTextPassword = (EditText) findViewById(R.id.password_login_input);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar_login);
     }
 
 
@@ -117,6 +131,51 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
             case R.id.button_switch_to_register_activity:
                 startActivity(new Intent(this,RegisterPage.class));
                 break;
+            case R.id.se_connecter_button:
+                UserLogin();
+                break;
+
         }
+    }
+
+    private void UserLogin() {
+        String email = editTextEmail.getText().toString().trim();
+        String password = editTextPassword.getText().toString().trim();
+
+        if (email.isEmpty()) {
+            editTextEmail.setError("Une adresse e-mail est obligatoire");
+            editTextEmail.requestFocus();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editTextEmail.setError("Adresse e-mail invalide");
+            editTextEmail.requestFocus();
+            return;
+        }
+
+        if (password.isEmpty()) {
+            editTextPassword.setError("Mot de passe obligatoire");
+            editTextPassword.requestFocus();
+            return;
+        }
+        if (password.length() < 6) {
+            editTextPassword.setError("Le mot de passe doit contenir au moins 6 charactères");
+            editTextPassword.requestFocus();
+            return;
+        }
+
+        progressBar.setVisibility(View.VISIBLE);
+        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    startActivity(new Intent(LoginPage.this,HomePage.class));
+                }else{
+                    Toast.makeText(LoginPage.this, "Authentification échouée", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 }
