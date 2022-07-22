@@ -22,4 +22,6 @@
     <string name="deja_un_compte">Déjà un compte ?</string>
     <string name="email_input_login">Email</string>
     <string name="favoris">Favoris</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

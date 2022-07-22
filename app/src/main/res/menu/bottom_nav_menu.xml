@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/qr_code_nav_bottom"
+          android:icon="@drawable/ic_qr_code_nav"
+          android:title="QR code"
+    />
+    <item android:id="@+id/ticket_nav_bottom"
+          android:icon="@drawable/ic_ticket_nav"
+          android:title="Ticket"
+    />
+
+    <item android:id="@+id/profile_nav_bottom"
+          android:icon="@drawable/ic_profile"
+          android:title="Profile"
+    />
+</menu>
