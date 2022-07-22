@@ -1,7 +1,6 @@
 package exportkit;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.*;
@@ -29,7 +28,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
 
     //################################# register with email and passaword ######################
     private TextView registerUserButton;
-    private EditText editTextEmail,editTextUserName,editTextPassword;
+    private EditText editTextEmail, editTextPasswordConfirmation,editTextPassword;
     private ProgressBar progressBar;
     //################################ end of register with email and password #################
     private FirebaseAuth mAuth;
@@ -74,7 +73,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         registerUserButton=(Button)findViewById(R.id.register_button);
         registerUserButton.setOnClickListener(this);
         editTextEmail=(EditText)findViewById(R.id.email_input_register);
-        editTextUserName=(EditText)findViewById(R.id.username_input_register);
+        editTextPasswordConfirmation =(EditText)findViewById(R.id.password_confirmation_input);
         editTextPassword=(EditText)findViewById(R.id.password_register_input);
         progressBar = (ProgressBar)findViewById(R.id.progressBar_register);
         //############################ end of register with email and password ###############
@@ -163,7 +162,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
 
     private void registerUserEmailPassword() {
         String email = editTextEmail.getText().toString().trim();
-        String userName = editTextUserName.getText().toString().trim();
+        String passwordConfirmation = editTextPasswordConfirmation.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
         if (email.isEmpty()) {
@@ -178,37 +177,38 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        if (userName.isEmpty()) {
-            editTextUserName.setError("Un nom d'utilisateur est obligatoire");
-            editTextUserName.requestFocus();
+        if (passwordConfirmation.isEmpty()) {
+            editTextPasswordConfirmation.setError("un mot de passe est obligatoire");
+            editTextPasswordConfirmation.requestFocus();
+            return;
+        }
+        //firebase n'accepte pas les mdp en dessous de 6 charactères
+        if (passwordConfirmation.length() < 6) {
+            editTextPasswordConfirmation.setError("Le mot de passe doit contenir au moins 6 charactères");
+            editTextPasswordConfirmation.requestFocus();
             return;
         }
 
-        /*rajouter le cas ou le nom d'utilisateur est deja pris
-        if(userName.exist()){
-            editTextUserName.setError("ce nom d'utilisateur est déjà pris");
-            editTextUserName.requestFocus();
-        }
-        */
 
         if (password.isEmpty()) {
             editTextPassword.setError("Mot de passe obligatoire");
             editTextPassword.requestFocus();
             return;
         }
-        //firebase n'accepte pas les mdp en dessous de 6 charactères
-        if (password.length() < 6) {
-            editTextPassword.setError("Le mot de passe doit contenir au moins 6 charactères");
+
+        if(!password.equals(passwordConfirmation)){
+            editTextPassword.setError("Le mot de passe doit être identique");
             editTextPassword.requestFocus();
             return;
         }
+
         progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            User user = new User(userName, email);//if the user have been registered sucessfully
+                            User user = new User(email);//if the user have been registered sucessfully
 
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

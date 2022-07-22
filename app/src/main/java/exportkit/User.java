@@ -1,13 +1,12 @@
 package exportkit;
 
 public class User {
-    public String userName,email;
+    public String email;
 
     public User(){
     }
 
-    public User(String userName,String email){
-        this.userName = userName;
+    public User(String email){
         this.email = email;
     }
 }
