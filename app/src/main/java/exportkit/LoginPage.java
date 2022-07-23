@@ -59,16 +59,16 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
             }
         });
 
-        registerButton = (Button) findViewById(R.id.button_switch_to_register_activity);
+        registerButton = findViewById(R.id.button_switch_to_register_activity);
         registerButton.setOnClickListener(this);
 
-        signIn = (Button) findViewById(R.id.se_connecter_button);
+        signIn = findViewById(R.id.se_connecter_button);
         signIn.setOnClickListener(this);
 
-        editTextEmail = (EditText) findViewById(R.id.email_input_login);
-        editTextPassword = (EditText) findViewById(R.id.password_login_input);
+        editTextEmail = findViewById(R.id.email_input_login);
+        editTextPassword = findViewById(R.id.password_login_input);
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar_login);
+        progressBar = findViewById(R.id.progressBar_login);
     }
 
 

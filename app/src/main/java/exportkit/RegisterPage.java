@@ -70,12 +70,12 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         //############################# End of Google Sign In  ###############################
 
         //############################ Register with email and password ######################
-        registerUserButton=(Button)findViewById(R.id.register_button);
+        registerUserButton=findViewById(R.id.register_button);
         registerUserButton.setOnClickListener(this);
-        editTextEmail=(EditText)findViewById(R.id.email_input_register);
-        editTextPasswordConfirmation =(EditText)findViewById(R.id.password_confirmation_input);
-        editTextPassword=(EditText)findViewById(R.id.password_register_input);
-        progressBar = (ProgressBar)findViewById(R.id.progressBar_register);
+        editTextEmail=findViewById(R.id.email_input_register);
+        editTextPasswordConfirmation =findViewById(R.id.password_confirmation_input);
+        editTextPassword=findViewById(R.id.password_register_input);
+        progressBar = findViewById(R.id.progressBar_register);
         //############################ end of register with email and password ###############
     }
 
@@ -120,7 +120,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                 firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
                 // Google Sign In failed,update UI appropriately
-                Toast.makeText(this,"Authentification échoué",Toast.LENGTH_SHORT);
+                Toast.makeText(this,"Authentification échoué",Toast.LENGTH_SHORT).show();
             }
         }
     }
