@@ -11,6 +11,8 @@
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable-nodpi/rectangle_4048_shape.xml" value="0.10208333333333333" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable-nodpi/rectangle_4_shape.xml" value="0.10208333333333333" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.10208333333333333" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable/ic_all_ticket_button.xml" value="0.31666666666666665" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable/ic_button_recent_ticket.xml" value="0.31666666666666665" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable/ic_etiket_logo.xml" value="0.31666666666666665" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable/ic_favoris_nav.xml" value="0.31666666666666665" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/drawable/ic_fond_login.xml" value="0.31666666666666665" />
@@ -30,6 +32,7 @@
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/activity_register_page.xml" value="0.46647230320699706" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/boutton_menu_bar.xml" value="0.30052083333333335" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/boutton_menu_bar_variant2.xml" value="0.2864583333333333" />
+        <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/button_with_text_layout.xml" value="1.3333333333333333" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/drawer_layout.xml" value="0.22" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/etiket.xml" value="0.20989583333333334" />
         <entry key="..\:/Users/twarr/IntelliJIDEAProjects/Etiket/app/src/main/res/layout/fragment_home_page.xml" value="0.30052083333333335" />
