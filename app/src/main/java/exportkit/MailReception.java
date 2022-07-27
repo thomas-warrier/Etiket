@@ -3,7 +3,9 @@ package exportkit;
 import android.media.Image;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,6 +34,11 @@ public class MailReception {
      *
      */
         private String saveDirectory;
+        private FirebaseAuth mAuth = FirebaseAuth.getInstance(); //grab the authentification instance
+        private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance(); //the database
+        private DatabaseReference myDBRef = mFirebaseDatabase.getReference(); //the reference (firestore)
+        FirebaseUser user = mAuth.getCurrentUser(); //get the user
+        private String userID = user.getUid(); //ID of user
 
         /**
          * Sets the directory where attached files will be stored.
@@ -162,7 +169,8 @@ public class MailReception {
             String userId = user.getUid();
             String ticketImageID = UUID.randomUUID().toString();
             Ticket ticket = new Ticket(sendDate,null,null);
-            myRef.child(users).child(userID).child(marketName).setValue()
+
+            myDBRef.child("users").child(userID).child(marketName).child(ticketImageID).setValue(ticket);
         }
     }
 }
