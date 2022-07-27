@@ -2,6 +2,7 @@ package exportkit;
 
 import android.media.Image;
 
+import java.lang.ref.Reference;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
@@ -16,7 +17,7 @@ public class Ticket {
     private Date date;
     private String titre;
     private String description;
-    private String image;
+    private String imageId;
     private boolean favoris;
     private String id;
 
@@ -24,7 +25,7 @@ public class Ticket {
         this.date = date;
         this.titre = titre;
         this.description = description;
-        this.image = image;
+        this.imageId = image;
         this.favoris = false;
         this.id = id;
 
@@ -42,7 +43,7 @@ public class Ticket {
         return description;
     }
 
-    public Image getImage() {
+    public Image getImageId() {
         /*faire un systéme qui va chercher l'image qui a l'id*/
         return null;
     }
