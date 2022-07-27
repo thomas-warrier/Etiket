@@ -6,6 +6,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +41,7 @@ public class MailReception {
         private DatabaseReference myDBRef = mFirebaseDatabase.getReference(); //the reference (firestore)
         FirebaseUser user = mAuth.getCurrentUser(); //get the user
         private String userID = user.getUid(); //ID of user
+        private StorageReference mStorageReference = FirebaseStorage.getInstance().getReference(); //the storage reference
 
         /**
          * Sets the directory where attached files will be stored.
@@ -158,19 +161,18 @@ public class MailReception {
 
             String saveDirectory = "C:\\Users\\twarr\\Desktop\\Attachment";
 
-            MailTest receiver = new MailTest();
+            MailReception receiver = new MailReception();
             receiver.setSaveDirectory(saveDirectory);
             receiver.downloadEmailAttachments(host, port, userName, password);
 
         }
 
-        private boolean pushToFirebase(String marketName, Date sendDate, File[] ticketImage){
+        private void pushToFirebase(String marketName, Date sendDate, File[] ticketImage){
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String userId = user.getUid();
-            String ticketImageID = UUID.randomUUID().toString();
-            Ticket ticket = new Ticket(sendDate,null,null);
+            String ticketID = UUID.randomUUID().toString();
+            Ticket ticket = new Ticket((java.sql.Date) sendDate,null,null,ticketID,ticketID);
 
-            myDBRef.child("users").child(userID).child(marketName).child(ticketImageID).setValue(ticket);
+            myDBRef.child("users").child(userID).child("store").child(marketName).child(ticketID).setValue(ticket);
         }
     }
-}
