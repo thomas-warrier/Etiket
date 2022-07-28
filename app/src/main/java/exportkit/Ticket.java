@@ -1,6 +1,7 @@
 package exportkit;
 
 import android.media.Image;
+import com.google.firebase.storage.StorageReference;
 
 import java.lang.ref.Reference;
 import java.time.LocalDateTime;
@@ -19,9 +20,9 @@ public class Ticket {
     private String description;
     private String imageId;
     private boolean favoris;
-    private String id;
+    private StorageReference id;
 
-    public Ticket(Date date, String titre, String description, String image, String id) {
+    public Ticket(Date date, String titre, String description, String image, StorageReference id) {
         this.date = date;
         this.titre = titre;
         this.description = description;
