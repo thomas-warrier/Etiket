@@ -2,7 +2,11 @@ package exportkit;
 
 import android.media.Image;
 import android.net.Uri;
+import androidx.annotation.NonNull;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -11,6 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,6 +50,7 @@ public class MailReception {
         FirebaseUser user = mAuth.getCurrentUser(); //get the user
         private String userID = user.getUid(); //ID of user
         private StorageReference mStorageReference = FirebaseStorage.getInstance().getReference("File/" + userID); //the storage reference
+        private boolean success =false;
 
         /**
          * Sets the directory where attached files will be stored.
@@ -170,13 +176,33 @@ public class MailReception {
 
         }
 
-        private void pushToFirebase(String marketName, Date sendDate, File[] ticketImage){
+        private boolean pushToFirebase(String marketName, Date sendDate, File[] ticketImage){
             String ticketID = UUID.randomUUID().toString();
             File file;
             Uri mFileUri = Uri.fromFile(File file);//I create a URI for my image;
             StorageReference fileReference = mStorageReference.child(ticketID);
             Ticket ticket = new Ticket((java.sql.Date) sendDate,null,null,ticketID,fileReference);
-            fileReference.putFile(mFileUri);
-            myDBRef.child("users").child(userID).child("store").child(marketName).child(ticketID).setValue(ticket);
+            fileReference.putFile(mFileUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    success =true;
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull @NotNull Exception e) {
+                    success = false;
+                }
+            });
+            myDBRef.child("users").child(userID).child("store").child(marketName).child(ticketID).setValue(ticket).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull @NotNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        success = true;
+                    }else{
+                        success = false;
+                    }
+                }
+            });
+            return success;
         }
     }
