@@ -171,8 +171,6 @@ public class MailReception {
         }
 
         private void pushToFirebase(String marketName, Date sendDate, File[] ticketImage){
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            String userId = user.getUid();
             String ticketID = UUID.randomUUID().toString();
             File file;
             Uri mFileUri = Uri.fromFile(File file);//I create a URI for my image;
