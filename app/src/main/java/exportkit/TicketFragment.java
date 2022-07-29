@@ -98,6 +98,6 @@ public class TicketFragment extends Fragment {
                         public void onFailure(@NonNull @NotNull Exception e) {
 
                         }
-                    })
+                    });
 
 }
