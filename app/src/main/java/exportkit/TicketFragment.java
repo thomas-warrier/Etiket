@@ -1,11 +1,26 @@
 package exportkit;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.io.FilenameUtils;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import exportkit.figma.R;
+import org.jetbrains.annotations.NotNull;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,6 +33,10 @@ public class TicketFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private StorageReference storageReference;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance(); //grab the authentification instance
+    private FirebaseUser user = mAuth.getCurrentUser(); //get the user
+    private String userID = user.getUid(); //ID of user
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -60,4 +79,25 @@ public class TicketFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_ticket, container, false);
     }
+    public String getFileExtension(String filename) {
+        return FilenameUtils.getExtension(filename);
+    }
+    private File getFileFromFirebase(String ticketID) throws IOException {
+        storageReference= FirebaseStorage.getInstance().getReference("File/"+userID+"/"+ticketID);
+            String suffix="";
+            File localfile = File.createTempFile(ticketID, getFileExtension(ticketID));
+            storageReference.getFile(localfile)
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Bitmap bitmap= BitmapFactory.decodeFile(localfile.getAbsolutePath());
+                            binding.imageView.setImageBitmap(bitmap);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull @NotNull Exception e) {
+
+                        }
+                    })
+
 }

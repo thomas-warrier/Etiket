@@ -1,7 +1,9 @@
 package exportkit;
 
+import android.content.ContentResolver;
 import android.media.Image;
 import android.net.Uri;
+import android.webkit.MimeTypeMap;
 import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -9,6 +11,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.io.FilenameUtils;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -19,9 +22,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
-import java.util.Properties;
-import java.util.UUID;
+import java.util.*;
 
 import javax.mail.Address;
 import javax.mail.Folder;
@@ -43,6 +44,8 @@ public class MailReception {
      *
      *
      */
+    private final static ArrayList<String> enseigne;
+
         private String saveDirectory;
         private FirebaseAuth mAuth = FirebaseAuth.getInstance(); //grab the authentification instance
         private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance(); //the database
@@ -176,8 +179,21 @@ public class MailReception {
 
         }
 
-        private boolean pushToFirebase(String marketName, Date sendDate, File[] ticketImage){
-            String ticketID = UUID.randomUUID().toString();
+        private String getMarketName(String mailExpeditor,ArrayList<String> enseigne){ //to get the name of the expeditor
+            for (String marketName : enseigne){
+                if(mailExpeditor.toLowerCase(Locale.ROOT).contains(marketName)){
+                    return marketName;
+                }
+            }
+            return null;
+        }
+
+            public String getFileExtension(String filename) {//to get the extension of the file
+                return FilenameUtils.getExtension(filename);
+            }
+
+        private boolean pushToFirebase(String marketName, Date sendDate, File[] ticketImage,String fileName){
+            String ticketID = UUID.randomUUID().toString()+"."+getFileExtension(fileName);
             File file;
             Uri mFileUri = Uri.fromFile(File file);//I create a URI for my image;
             StorageReference fileReference = mStorageReference.child(ticketID);
