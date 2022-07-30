@@ -5,7 +5,7 @@
                                                    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-            android:id="@+id/image_dynamic_button"
+            android:id="@+id/image_dynamic_ticket_button"
             android:layout_width="115dp"
             android:layout_height="115dp"
             android:src="@drawable/ic_ticket_nav"
@@ -16,30 +16,30 @@
 
     />
     <TextView
-            android:id="@+id/title_dynamic_button"
+            android:id="@+id/title_dynamic_ticket_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:textSize="22sp"
             android:text="Title"
             android:fontFamily="@font/roboto_bold"
             android:textColor="#526581"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/image_dynamic_button"
+            app:layout_constraintLeft_toRightOf="@id/image_dynamic_ticket_button"
             android:layout_marginLeft="10dp"
 
     />
     <TextView
-            android:id="@+id/date_dynamic_button"
+            android:id="@+id/date_dynamic_ticket_button"
             android:layout_width="wrap_content"
-            android:textSize="12sp"
+            android:textSize="20sp"
             android:text="Date"
             android:layout_height="wrap_content"
             android:textColor="#526581"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/image_dynamic_button"
-            app:layout_constraintTop_toBottomOf="@id/title_dynamic_button"
+            app:layout_constraintLeft_toRightOf="@id/image_dynamic_ticket_button"
+            app:layout_constraintTop_toBottomOf="@id/title_dynamic_ticket_button"
             android:layout_marginLeft="10dp"
     />
 </androidx.constraintlayout.widget.ConstraintLayout>
