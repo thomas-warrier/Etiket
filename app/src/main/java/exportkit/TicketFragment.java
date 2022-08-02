@@ -99,5 +99,4 @@ public class TicketFragment extends Fragment {
 
                         }
                     });
-
 }

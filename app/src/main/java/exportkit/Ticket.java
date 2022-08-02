@@ -21,6 +21,8 @@ public class Ticket {
     private boolean favoris;
     private StorageReference fileReference;
 
+    public Ticket(){}
+
     public Ticket(Date date, String titre, String description, String ticketID, StorageReference fileReference) {
         this.date = date;
         this.titre = titre;
