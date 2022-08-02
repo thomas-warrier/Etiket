@@ -91,7 +91,7 @@ public class TicketFragment extends Fragment {
                         @Override
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                             Bitmap bitmap= BitmapFactory.decodeFile(localfile.getAbsolutePath());
-                            binding.imageView.setImageBitmap(bitmap);
+                            //create the object market
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
