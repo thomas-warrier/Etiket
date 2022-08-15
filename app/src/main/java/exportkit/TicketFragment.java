@@ -8,11 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.io.FilenameUtils;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -21,6 +25,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,6 +42,10 @@ public class TicketFragment extends Fragment {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance(); //grab the authentification instance
     private FirebaseUser user = mAuth.getCurrentUser(); //get the user
     private String userID = user.getUid(); //ID of user
+    RecyclerView recyclerView;
+    ArrayList<Market> marketArrayList;
+    MarketAdapter marketAdapter;
+    FirebaseFirestore db;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -71,32 +80,43 @@ public class TicketFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        db = FirebaseFirestore.getInstance();
+        marketArrayList = new ArrayList<Market>();
+        marketAdapter = new MarketAdapter(getContext(), marketArrayList);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        recyclerView = getView().findViewById(R.id.recycler_view_market);
+        recyclerView.setHasFixedSize(true); //set the size
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         return inflater.inflate(R.layout.fragment_ticket, container, false);
+
     }
+
     public String getFileExtension(String filename) {
         return FilenameUtils.getExtension(filename);
     }
-    private File getFileFromFirebase(String ticketID) throws IOException {
-        storageReference= FirebaseStorage.getInstance().getReference("File/"+userID+"/"+ticketID);
-            String suffix="";
-            File localfile = File.createTempFile(ticketID, getFileExtension(ticketID));
-            storageReference.getFile(localfile)
-                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                            Bitmap bitmap= BitmapFactory.decodeFile(localfile.getAbsolutePath());
-                            //create the object market
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull @NotNull Exception e) {
 
-                        }
-                    });
+    private File getFileFromFirebase(String ticketID) throws IOException {
+        storageReference = FirebaseStorage.getInstance().getReference("File/" + userID + "/" + ticketID);
+        String suffix = "";
+        File localfile = File.createTempFile(ticketID, getFileExtension(ticketID));
+        storageReference.getFile(localfile)
+                .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        Bitmap bitmap = BitmapFactory.decodeFile(localfile.getAbsolutePath());
+                        //create the object market
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull @NotNull Exception e) {
+
+                    }
+                });
+    }
 }
