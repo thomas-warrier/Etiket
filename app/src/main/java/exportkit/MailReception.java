@@ -1,6 +1,9 @@
 package exportkit;
 
+import static androidx.fragment.app.FragmentManager.TAG;
+
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -17,6 +20,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -222,7 +227,7 @@ public class MailReception {
 
     }
 
-    private void getMarketFromFirebase(String senderEmail, OnGetMarketListener marketListener) {
+    private void getPublicMarketFromFirebase(String senderEmail, OnGetMarketListener marketListener) {
         DocumentReference docRef = mFireStore.collection("Market").document(senderEmail);
 
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -234,7 +239,7 @@ public class MailReception {
         });
     }
 
-    private void createMarket(Market market) {
+    private DocumentReference createMarket(Market market) {
         Map<String, Object> docData = new HashMap<>();
         docData.put("marketLogo", market.getMarketLogo());
         docData.put("e-mail", market.getEmail());
@@ -243,15 +248,44 @@ public class MailReception {
         docData.put("favorite",false);
         String UID = UUID.randomUUID().toString();
         mFireStore.collection("User").document(userID).collection("Market").document(UID).set(docData);
-        mFireStore.document(UID).collection("ticket");
+        mFireStore.collection("User").document(userID).collection("Market").document(UID).collection("ticket");
+        return mFireStore.collection("User").document(userID).collection("Market").document(UID);
     }
 
     private void createTicket(Market market, String ticketID) {
         mFireStore.document(market.getName()).collection("ticket").document(ticketID).set();
     }
 
-    private void pushMarketInFirebase(String emailSender){
-        mFireStore.collection("Market").whereArrayContains("e-mail",emailSender)
+    private void getMarketFromFirebase(String emailSender,OnGetMarketDocumentReference marketListener){
+        mFireStore.collection("Market").whereArrayContains("e-mail",emailSender).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    if (task.getResult().isEmpty()) { //if there is no match,I create the market for the user
+                        getPublicMarketFromFirebase(emailSender, new OnGetMarketListener() {
+                            @Override
+                            public void marketReciever(Market market) {
+                                marketListener.getMarketReference(createMarket(market));
+                            }
+
+                        });
+                    }
+                    else{
+                        QuerySnapshot document = task.getResult(); //grab the query wich contain the document
+                        for (DocumentSnapshot documentSnapshot : task.getResult()){ //grab the document wich contain the right e-mail
+                            marketListener.getMarketReference(documentSnapshot.getReference());
+                        }
+                    }
+
+
+                } else {
+                    Log.d("MailReception,pushMarketInto", "Error getting documents: ", task.getException());
+                }
+            }
+        });
 
     }
+
+
 }
