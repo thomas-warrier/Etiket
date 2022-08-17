@@ -190,12 +190,9 @@ public class MailReception {
         return FilenameUtils.getExtension(filename);
     }
 
-    private boolean pushToFirebase(String marketName, Date sendDate, String mailObject, File[] ticketImage, String fileName) {
-        String ticketID = UUID.randomUUID().toString() + "." + getFileExtension(fileName);
-        File file;
-        Uri mFileUri = Uri.fromFile(File file);//I create a URI for my image;
-        StorageReference fileReference = mStorageReference.child(ticketID);
-        Ticket ticket = new Ticket((java.sql.Date) sendDate, mailObject, null, ticketID, fileReference);
+    private boolean pushFileToFirebase(File file) {
+        Uri mFileUri = Uri.fromFile(file);//I create a URI for my image;
+        StorageReference fileReference = mStorageReference.child("Users").child(userID);
         fileReference.putFile(mFileUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -210,16 +207,6 @@ public class MailReception {
             @Override
             public void onFailure(@NonNull @NotNull Exception e) {
                 success = false;
-            }
-        });
-        myDBRef.child("users").child(userID).child("store").child(marketName).child(ticketID).setValue(ticket).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    success = true;
-                } else {
-                    success = false;
-                }
             }
         });
         return success;
@@ -248,16 +235,26 @@ public class MailReception {
         docData.put("favorite",false);
         String UID = UUID.randomUUID().toString();
         mFireStore.collection("User").document(userID).collection("Market").document(UID).set(docData);
-        mFireStore.collection("User").document(userID).collection("Market").document(UID).collection("ticket");
+        mFireStore.collection("User").document(userID).collection("Market").document(UID).collection("Ticket");
         return mFireStore.collection("User").document(userID).collection("Market").document(UID);
     }
 
-    private void createTicket(Market market, String ticketID) {
-        mFireStore.document(market.getName()).collection("ticket").document(ticketID).set();
+    private void createTicket(DocumentReference marketRef, String ticketID,Ticket ticket) {
+        Map<String, Object> docData = new HashMap<>();
+        docData.put("title", ticket.getTitre());
+        docData.put("description", ticket.getDescription());
+        docData.put("date",ticket.getDate());
+        docData.put("favorite",false);
+        for (File file : ticket.getImageList()){
+                docData.put("ImageLink",pushFileToFirebase(file));
+        }
+        marketRef.update("dateOfLastTicket",ticket.getDate()); //to update the date of the last ticket in the market
+
+        mFireStore.collection("User").document(userID).collection("Market").document(marketRef.getId()).collection("Ticket").document(ticketID).set(docData);
     }
 
     private void getMarketFromFirebase(String emailSender,OnGetMarketDocumentReference marketListener){
-        mFireStore.collection("Market").whereArrayContains("e-mail",emailSender).get()
+        mFireStore.collection("User").document(userID).collection("Market").whereArrayContains("e-mail",emailSender).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {

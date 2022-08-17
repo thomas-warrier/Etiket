@@ -3,10 +3,12 @@ package exportkit;
 import android.media.Image;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.sql.Date;
+import java.util.ArrayList;
 
 
 /**
@@ -19,17 +21,24 @@ public class Ticket {
     private String description;
     private String fileId;
     private boolean favoris;
+
+    public ArrayList<File> getImageList() {
+        return imageList;
+    }
+
+    private ArrayList<File> imageList;
     private StorageReference fileReference;
 
     public Ticket(){}
 
-    public Ticket(Date date, String titre, String description, String ticketID, StorageReference fileReference) {
+    public Ticket(Date date, String titre, String description, String ticketID, StorageReference fileReference,ArrayList<File> imageList) {
         this.date = date;
         this.titre = titre;
         this.description = description;
         this.fileId = ticketID;
         this.favoris = false;
         this.fileReference = fileReference;
+        this.imageList = imageList;
 
     }
 
