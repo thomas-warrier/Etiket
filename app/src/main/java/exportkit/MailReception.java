@@ -144,6 +144,7 @@ public class MailReception {
                 }
 
                 // print out details of each message
+                /*
                 System.out.println("Message #" + (i + 1) + ":");
                 System.out.println("from :" + from);
                 String result = from.substring(from.indexOf("<") + 1, from.indexOf("@"));
@@ -151,6 +152,7 @@ public class MailReception {
 
                 System.out.println("\t Sent Date: " + sentDate);
                 System.out.println("\t Attachments: " + attachFiles);
+                 */
 
                 getMarketFromFirebase(from, new OnGetMarketDocumentReference() {
                     @Override
