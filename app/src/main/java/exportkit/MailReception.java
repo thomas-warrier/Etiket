@@ -1,7 +1,5 @@
 package exportkit;
 
-import static androidx.fragment.app.FragmentManager.TAG;
-
 import android.net.Uri;
 import android.util.Log;
 
@@ -13,14 +11,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.io.FilenameUtils;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -33,6 +28,7 @@ import java.io.IOException;
 import java.util.*;
 
 import javax.mail.Address;
+import javax.mail.Flags;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -50,7 +46,6 @@ public class MailReception {
      * This program demonstrates how to download e-mail messages and save
      * attachments into files on disk.
      */
-    private final static ArrayList<String> enseigne;
 
     private String saveDirectory;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance(); //grab the authentification instance
@@ -61,6 +56,7 @@ public class MailReception {
     private StorageReference mStorageReference = FirebaseStorage.getInstance().getReference("File/" + userID); //the storage reference
     private boolean success = false;
     private FirebaseFirestore mFireStore = FirebaseFirestore.getInstance();
+    private static Message message;
 
     /**
      * Sets the directory where attached files will be stored.
@@ -91,7 +87,6 @@ public class MailReception {
         properties.setProperty("mail.pop3.ssl.enable", "true");
 
         Session session = Session.getDefaultInstance(properties);
-
         try {
             // connects to the message store
             Store store = session.getStore("pop3");
@@ -104,10 +99,11 @@ public class MailReception {
             Message[] arrayMessages = folderInbox.getMessages();
 
             for (int i = 0; i < arrayMessages.length; i++) {
-                Message message = arrayMessages[i];
+                ArrayList<File> listFile = new ArrayList<>();
+                message = arrayMessages[i];
                 Address[] fromAddress = message.getFrom();
-                String from = fromAddress[0].toString();
 
+                String from = fromAddress[0].toString();
                 String subject = message.getSubject();
                 Date sentDate = message.getSentDate();
 
@@ -127,7 +123,9 @@ public class MailReception {
                             // this part is attachment
                             String fileName = part.getFileName();
                             attachFiles += fileName + ", ";
-                            part.saveFile(saveDirectory + File.separator + fileName);
+                            File file = File.createTempFile("temp",null); //create an empty temporary file
+                            listFile.add(file);
+                            part.saveFile(file);//save the content in the temp file created before
                         } else {
                             // this part may be the message content
                             messageContent = part.getContent().toString();
@@ -153,6 +151,16 @@ public class MailReception {
 
                 System.out.println("\t Sent Date: " + sentDate);
                 System.out.println("\t Attachments: " + attachFiles);
+
+                getMarketFromFirebase(from, new OnGetMarketDocumentReference() {
+                    @Override
+                    public void getMarketReference(DocumentReference docRef) {
+                        String UID = UUID.randomUUID().toString();
+                        Ticket ticket = new Ticket(sentDate,null,subject,listFile); //création du ticket
+                        createTicket(docRef,UID,ticket);
+                    }
+                });
+
             }
 
             // disconnect
@@ -186,9 +194,6 @@ public class MailReception {
 
     }
 
-    public String getFileExtension(String filename) {//to get the extension of the file
-        return FilenameUtils.getExtension(filename);
-    }
 
     private boolean pushFileToFirebase(File file) {
         Uri mFileUri = Uri.fromFile(file);//I create a URI for my image;
@@ -241,16 +246,28 @@ public class MailReception {
 
     private void createTicket(DocumentReference marketRef, String ticketID,Ticket ticket) {
         Map<String, Object> docData = new HashMap<>();
-        docData.put("title", ticket.getTitre());
+        docData.put("title", ticket.getTitle());
         docData.put("description", ticket.getDescription());
         docData.put("date",ticket.getDate());
         docData.put("favorite",false);
+        int count = 0;
         for (File file : ticket.getImageList()){
-                docData.put("ImageLink",pushFileToFirebase(file));
+                docData.put("ImageLink"+count,pushFileToFirebase(file));
+                count++;
         }
         marketRef.update("dateOfLastTicket",ticket.getDate()); //to update the date of the last ticket in the market
 
-        mFireStore.collection("User").document(userID).collection("Market").document(marketRef.getId()).collection("Ticket").document(ticketID).set(docData);
+        mFireStore.collection("User").document(userID).collection("Market").document(marketRef.getId()).collection("Ticket").document(ticketID)
+                .set(docData).addOnSuccessListener(new OnSuccessListener<Void>() { //if success we can delete the email
+                    @Override
+                    public void onSuccess(Void unused) {
+                        try {
+                            message.setFlag(Flags.Flag.DELETED, true);
+                        } catch (MessagingException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 
     private void getMarketFromFirebase(String emailSender,OnGetMarketDocumentReference marketListener){

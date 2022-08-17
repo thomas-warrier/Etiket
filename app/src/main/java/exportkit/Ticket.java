@@ -7,7 +7,7 @@ import java.io.File;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 
 
@@ -17,37 +17,30 @@ import java.util.ArrayList;
  */
 public class Ticket {
     private Date date;
-    private String titre;
+    private String title;
     private String description;
-    private String fileId;
-    private boolean favoris;
-
-    public ArrayList<File> getImageList() {
-        return imageList;
-    }
-
     private ArrayList<File> imageList;
     private StorageReference fileReference;
 
     public Ticket(){}
 
-    public Ticket(Date date, String titre, String description, String ticketID, StorageReference fileReference,ArrayList<File> imageList) {
+    public Ticket(Date date, String title, String description,ArrayList<File> imageList) {
         this.date = date;
-        this.titre = titre;
+        this.title = title;
         this.description = description;
-        this.fileId = ticketID;
-        this.favoris = false;
-        this.fileReference = fileReference;
         this.imageList = imageList;
 
+    }
+    public ArrayList<File> getImageList() {
+        return imageList;
     }
 
     public Date getDate() {
         return date;
     }
 
-    public String getTitre() {
-        return titre;
+    public String getTitle() {
+        return title;
     }
 
     public String getDescription() {
@@ -63,20 +56,13 @@ public class Ticket {
         return fileReference;
     }
 
-    public boolean isFavoris() {
-        return favoris;
-    }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public void setFavoris(boolean favoris) {
-        this.favoris = favoris;
     }
 
     public boolean isRecent(Ticket ticket) {
