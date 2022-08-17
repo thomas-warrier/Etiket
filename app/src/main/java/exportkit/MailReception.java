@@ -124,6 +124,7 @@ public class MailReception {
                             String fileName = part.getFileName();
                             attachFiles += fileName + ", ";
                             File file = File.createTempFile("temp",null); //create an empty temporary file
+                            file.deleteOnExit();//to delete the file when app is closed
                             listFile.add(file);
                             part.saveFile(file);//save the content in the temp file created before
                         } else {
