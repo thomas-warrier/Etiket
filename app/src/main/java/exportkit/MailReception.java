@@ -57,6 +57,7 @@ public class MailReception {
     private boolean success = false;
     private FirebaseFirestore mFireStore = FirebaseFirestore.getInstance();
     private static Message message;
+    private static int count;
 
     /**
      * Sets the directory where attached files will be stored.
@@ -189,37 +190,28 @@ public class MailReception {
         String userName = "etiket@outlook.fr";
         String password = "T2o1t1o1";
 
-        String saveDirectory = "C:\\Users\\twarr\\Desktop\\Attachment";
 
         MailReception receiver = new MailReception();
-        receiver.setSaveDirectory(saveDirectory);
         receiver.downloadEmailAttachments(host, port, userName, password);
 
     }
 
 
-    private boolean pushFileToFirebase(File file) {
+    private void pushFileToFirebase(File file,OnGetUrlListener marketUrlListener) {
         Uri mFileUri = Uri.fromFile(file);//I create a URI for my image;
-        StorageReference fileReference = mStorageReference.child("Users").child(userID);
+        StorageReference fileReference = mStorageReference.child("Users/"+userID+"/"+file.getName());
         fileReference.putFile(mFileUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        success = true;
+                        String url = uri.toString();
+                        marketUrlListener.urlReciever(url);
                     }
                 });
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull @NotNull Exception e) {
-                success = false;
-            }
-        });
-        return success;
-
-
+    });
     }
 
     private void getPublicMarketFromFirebase(String senderEmail, OnGetMarketListener marketListener) {
@@ -253,10 +245,16 @@ public class MailReception {
         docData.put("description", ticket.getDescription());
         docData.put("date",ticket.getDate());
         docData.put("favorite",false);
-        int count = 0;
+        count = 0;
         for (File file : ticket.getImageList()){
-                docData.put("ImageLink"+count,pushFileToFirebase(file));
-                count++;
+                pushFileToFirebase(file, new OnGetUrlListener() {
+                            @Override
+                            public void urlReciever(String url) {
+                                docData.put("ImageLink"+count,url);
+                                count++;
+                            }
+
+                        });
         }
         marketRef.update("dateOfLastTicket",ticket.getDate()); //to update the date of the last ticket in the market
 
@@ -280,13 +278,7 @@ public class MailReception {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     if (task.getResult().isEmpty()) { //if there is no match,I create the market for the user
-                        getPublicMarketFromFirebase(emailSender, new OnGetMarketListener() {
-                            @Override
-                            public void marketReciever(Market market) {
-                                marketListener.getMarketReference(createMarket(market));
-                            }
-
-                        });
+                        getPublicMarketFromFirebase(emailSender, market -> marketListener.getMarketReference(createMarket(market)));
                     }
                     else{
                         QuerySnapshot document = task.getResult(); //grab the query wich contain the document
