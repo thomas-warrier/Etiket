@@ -20,10 +20,10 @@ import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link TicketFragment#newInstance} factory method to
+ * Use the {@link RecentTicketFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TicketFragment extends Fragment {
+public class RecentTicketFragment extends Fragment {
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance(); //grab the authentification instance
     private FirebaseUser user = mAuth.getCurrentUser(); //get the user
@@ -39,7 +39,7 @@ public class TicketFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public TicketFragment() {
+    public RecentTicketFragment() {
         // Required empty public constructor
     }
 
@@ -49,11 +49,11 @@ public class TicketFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment TicketFragment.
+     * @return A new instance of fragment RecentTicketFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TicketFragment newInstance(String param1, String param2) {
-        TicketFragment fragment = new TicketFragment();
+    public static RecentTicketFragment newInstance(String param1, String param2) {
+        RecentTicketFragment fragment = new RecentTicketFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -74,12 +74,12 @@ public class TicketFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ticket, container, false);
+        return inflater.inflate(R.layout.fragment_recent_ticket, container, false);
     }
 
-    private ArrayList<Ticket> getTicketFromFirebase(DocumentReference market){
+    private ArrayList<Ticket> getTicketFromFirebase(){
         ArrayList<Ticket> ticketList = new ArrayList<>();
-        mFirestore.collection("User").document(userID).collection("Market").document(market.getId()).collection("Ticket").orderBy("date", Query.Direction.DESCENDING).orderBy("favorite")
+        mFirestore.collection("User").document(userID).collection("Market").document().collection("Ticket").whereEqualTo("favorite",true).orderBy("date", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

@@ -37,7 +37,7 @@ public class HomePage extends AppCompatActivity {
                             selectedFragment = new HomePageFragment();
                             break;
                         case R.id.ticket_nav_bottom:
-                            selectedFragment = new TicketFragment();
+                            selectedFragment = new MarketFragment();
                             break;
                         case R.id.profile_nav_bottom:
                             selectedFragment = new ProfileFragment();

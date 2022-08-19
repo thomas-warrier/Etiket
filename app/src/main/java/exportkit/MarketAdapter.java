@@ -46,7 +46,8 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MarketAdapter.MyViewHolder holder, int position) {
         Market market = marketArrayList.get(position);
-        holder.marketLogo.setImageBitmap(market.getMarketLogo()); //set the logo content
+        image = ImageIO.read(url);
+        holder.marketLogo.setImage(image);//set the logo content
         holder.date.setText("Dernier Ticket : "+ dateFormat(market.getDate())); //set the content of the date with a formated date
     }
 
