@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
+import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -46,8 +47,7 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MarketAdapter.MyViewHolder holder, int position) {
         Market market = marketArrayList.get(position);
-        image = ImageIO.read(url);
-        holder.marketLogo.setImage(image);//set the logo content
+        Picasso.get().load(market.getMarketLogo()).into(holder.marketLogo);//set the logo content
         holder.date.setText("Dernier Ticket : "+ dateFormat(market.getDate())); //set the content of the date with a formated date
     }
 

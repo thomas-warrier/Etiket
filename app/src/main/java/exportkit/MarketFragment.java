@@ -85,36 +85,27 @@ public class MarketFragment extends Fragment {
         recyclerView = getView().findViewById(R.id.recycler_view_market);
         recyclerView.setHasFixedSize(true); //set the size
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        marketArrayList = new ArrayList<>();
+        marketAdapter=new MarketAdapter(this.getContext(),marketArrayList);
+        recyclerView.setAdapter(marketAdapter);
 
-        return inflater.inflate(R.layout.fragment_market, container, false);
-
-    }
-
-
-    private ArrayList<Market> getMarketFromFirebase(){
-        ArrayList<Market> marketList = new ArrayList<>();
-        mFirestore.collection("User").document(userID).collection("Market").orderBy("favorite")
-                .get()
+        mFirestore.collection("User").document(userID).collection("Market").orderBy("favorite").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                marketList.add(document.toObject(Market.class));
+                                marketArrayList.add(document.toObject(Market.class)); //cast the fetched document into an market object and add this market to the list
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
+                        marketAdapter.notifyDataSetChanged(); //to update le recyclerview when new market
                     }
-
-
                 });
-        return marketList;
-    }
 
-
-    private void createMarketCard(ArrayList<Market> marketArrayList){
+        return inflater.inflate(R.layout.fragment_market, container, false);
 
     }
 
