@@ -77,8 +77,8 @@ public class RecentTicketFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_recent_ticket, container, false);
     }
 
-    private ArrayList<Ticket> getTicketFromFirebase(){
-        ArrayList<Ticket> ticketList = new ArrayList<>();
+    private ArrayList<TicketSender> getTicketFromFirebase(){
+        ArrayList<TicketSender> ticketList = new ArrayList<>();
         mFirestore.collection("User").document(userID).collection("Market").document().collection("Ticket").whereEqualTo("favorite",true).orderBy("date", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -87,7 +87,7 @@ public class RecentTicketFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                ticketList.add(document.toObject(Ticket.class));
+                                ticketList.add(document.toObject(TicketSender.class));
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());

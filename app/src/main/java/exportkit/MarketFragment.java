@@ -85,22 +85,6 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnTouchMar
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         recyclerView = getView().findViewById(R.id.recycler_view_market);
-        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-                return false;
-            }
-
-            @Override
-            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-            }
-        });
         recyclerView.setHasFixedSize(true); //set the size
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         marketArrayList = new ArrayList<>();
@@ -131,6 +115,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnTouchMar
     public void onTouchMarket(int position) {
         Intent intent = new Intent(this.getContext(),TicketActivity.class);
         intent.putExtra("marketName",marketArrayList.get(position).getName());
+        intent.putExtra("marketId",marketArrayList.get(position).getMarketId());
         startActivity(intent);
     }
 

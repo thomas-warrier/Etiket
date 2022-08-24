@@ -6,18 +6,22 @@ import java.util.Date;
 
 public class Market {
     private String name;
-    private Date date; //need to be the same name in the marketAdapter class
     private String marketLogo;
+    private Date date; //need to be the same name in the marketAdapter class
+    private String email;
     private boolean favorite;
+    private String marketId;
 
     public Market() {
     } //empty constructor for firebase
 
-    public Market(String name,String marketLogo,Date date,boolean favorite) {
+    public Market(String name,String marketLogo,Date date,String email,boolean favorite,String marketId) {
         this.name = name;
         this.marketLogo = marketLogo;
         this.date=date;
+        this.email=email;
         this.favorite = favorite;
+        this.marketId=marketId;
     }
 
     public Date getDate() {
@@ -27,6 +31,11 @@ public class Market {
     public String getMarketLogo() {
         return marketLogo;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
 
     public boolean getFavorite() {
         return favorite;
@@ -40,4 +49,7 @@ public class Market {
         return name;
     }
 
+    public String getMarketId() {
+        return marketId;
+    }
 }

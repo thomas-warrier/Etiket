@@ -15,21 +15,19 @@ import java.util.ArrayList;
  *
  * @author twarr
  */
-public class Ticket {
+public class TicketSender {
     private Date date;
     private String title;
     private String description;
     private ArrayList<File> imageList;
-    private StorageReference fileReference;
 
-    public Ticket(){}
+    public TicketSender(){}
 
-    public Ticket(Date date, String title, String description,ArrayList<File> imageList) {
+    public TicketSender(Date date, String title, String description, ArrayList<File> imageList) {
         this.date = date;
         this.title = title;
         this.description = description;
         this.imageList = imageList;
-
     }
     public ArrayList<File> getImageList() {
         return imageList;
@@ -47,30 +45,5 @@ public class Ticket {
         return description;
     }
 
-    public Image getFileId() {
-        /*faire un systéme qui va chercher l'image qui a l'id*/
-        return null;
-    }
 
-    public StorageReference getFileReference() {
-        return fileReference;
-    }
-
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public boolean isRecent(Ticket ticket) {
-        LocalDateTime localTime = LocalDateTime.now();
-        long diff = ChronoUnit.DAYS.between(localTime, (Temporal) ticket.date);
-        if (diff <= 3) {
-            return true;
-        }
-        return false;
-    }
 }

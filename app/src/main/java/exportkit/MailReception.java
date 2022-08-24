@@ -6,7 +6,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,8 +19,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -160,7 +157,7 @@ public class MailReception {
                     @Override
                     public void getMarketReference(DocumentReference docRef) {
                         String UID = UUID.randomUUID().toString();
-                        Ticket ticket = new Ticket(sentDate,null,subject,listFile); //création du ticket
+                        TicketSender ticket = new TicketSender(sentDate,null,subject,listFile); //création du ticket
                         createTicket(docRef,UID,ticket);
                     }
                 });
@@ -228,17 +225,20 @@ public class MailReception {
 
     private DocumentReference createMarket(Market market) {
         Map<String, Object> docData = new HashMap<>();
+        docData.put("marketName",market.getName());
         docData.put("marketLogo", market.getMarketLogo());
         docData.put("dateOfLastTicket",null);
-        docData.put("marketName",market.getName());
+        docData.put("email",market.getEmail());
         docData.put("favorite",false);
         String UID = UUID.randomUUID().toString();
+        docData.put("marketId",UID);
+
         mFireStore.collection("User").document(userID).collection("Market").document(UID).set(docData);
         mFireStore.collection("User").document(userID).collection("Market").document(UID).collection("Ticket");
         return mFireStore.collection("User").document(userID).collection("Market").document(UID);
     }
 
-    private void createTicket(DocumentReference marketRef, String ticketID,Ticket ticket) {
+    private void createTicket(DocumentReference marketRef, String ticketID, TicketSender ticket) {
         Map<String, Object> docData = new HashMap<>();
         docData.put("title", ticket.getTitle());
         docData.put("description", ticket.getDescription());

@@ -5,16 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="exportkit.TicketActivity">
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:elevation="5dp"
+        android:scaleType="fitXY"
         android:src="@drawable/ic_rectangle_background"
-        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="visible"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:scaleType="fitXY"
-        android:elevation="5dp"
-        />
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/rectangle_background_ticket_activity"/>
 
     <ImageButton
         android:id="@+id/back_arrow_to_market"
@@ -28,7 +30,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="#6B94FF"
-        android:contentDescription="@string/background_arrow"/>
+        android:contentDescription="@string/background_arrow"
+        android:elevation="6dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,6 +44,7 @@
         android:id="@+id/market_name_ticket_activity"
         android:fontFamily="@font/roboto_bold"
         android:textColor="@color/black"
+        android:elevation="6dp"
         />
 
     <ImageButton
@@ -54,6 +58,36 @@
         app:layout_constraintBottom_toBottomOf="@id/back_arrow_to_market"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/back_arrow_to_market"
-        android:contentDescription="@string/add_favorite"/>
+        android:contentDescription="@string/add_favorite"
+        android:elevation="6dp"/>
+    <TextView
+        android:id="@+id/your_ticket_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="Vos Tickets"
+        android:textColor="#6A788E"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rectangle_background_ticket_activity"
+        />
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/your_ticket_text"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginTop="10dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ticket_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/your_ticket_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+    </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
