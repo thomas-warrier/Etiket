@@ -229,7 +229,6 @@ public class MailReception {
     private DocumentReference createMarket(Market market) {
         Map<String, Object> docData = new HashMap<>();
         docData.put("marketLogo", market.getMarketLogo());
-        docData.put("e-mail", market.getEmail());
         docData.put("dateOfLastTicket",null);
         docData.put("marketName",market.getName());
         docData.put("favorite",false);

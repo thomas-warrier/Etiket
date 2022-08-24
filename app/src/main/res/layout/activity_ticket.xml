@@ -5,5 +5,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="exportkit.TicketActivity">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_rectangle_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:scaleType="fitXY"
+        android:elevation="5dp"
+        />
+
+    <ImageButton
+        android:id="@+id/back_arrow_to_market"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:background="@android:color/transparent"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/ic_back_arrow"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#6B94FF"
+        android:contentDescription="@string/background_arrow"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/back_arrow_to_market"
+        app:layout_constraintBottom_toBottomOf="@id/back_arrow_to_market"
+        android:text="Market name"
+        android:id="@+id/market_name_ticket_activity"
+        android:fontFamily="@font/roboto_bold"
+        android:textColor="@color/black"
+        />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/transparent"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/ic_favoris_nav"
+        app:layout_constraintBottom_toBottomOf="@id/back_arrow_to_market"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/back_arrow_to_market"
+        android:contentDescription="@string/add_favorite"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

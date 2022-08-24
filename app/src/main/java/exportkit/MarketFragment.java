@@ -130,7 +130,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnTouchMar
     @Override
     public void onTouchMarket(int position) {
         Intent intent = new Intent(this.getContext(),TicketActivity.class);
-        intent.putExtra("name",marketArrayList.get(position).getName());
+        intent.putExtra("marketName",marketArrayList.get(position).getName());
         startActivity(intent);
     }
 

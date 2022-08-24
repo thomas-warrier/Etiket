@@ -1,7 +1,6 @@
 package exportkit;
 
 
-import android.graphics.Bitmap;
 
 import java.util.Date;
 
@@ -9,15 +8,16 @@ public class Market {
     private String name;
     private Date date; //need to be the same name in the marketAdapter class
     private String marketLogo;
-    String email;
     private boolean favorite;
 
-    public Market(){} //empty constructor for firebase
-    public Market(Date date, String marketLogo,String name,String email) {
+    public Market() {
+    } //empty constructor for firebase
+
+    public Market(String name,String marketLogo,Date date,boolean favorite) {
         this.name = name;
         this.marketLogo = marketLogo;
-        this.favorite=false;
-        this.email=email;
+        this.date=date;
+        this.favorite = favorite;
     }
 
     public Date getDate() {
@@ -40,11 +40,4 @@ public class Market {
         return name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public boolean isFavorite() {
-        return favorite;
-    }
 }
