@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="exportkit.figma">
-    <uses-permission android:name="android.permission.INTERNET"/>
+    package="exportkit.figma">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-            android:allowBackup="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:allowBackup="true"
+        android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-                android:name="exportkit.RegisterPage"
-                android:exported="true"/>
+            android:name=".TicketActivity"
+            android:exported="false" />
         <activity
-                android:name="exportkit.LoginPage"
-                android:exported="true">
+            android:name=".RegisterPage"
+            android:exported="true" />
+        <activity
+            android:name=".LoginPage"
+            android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-                android:name="exportkit.HomePage"
-                android:exported="true">
+            android:name=".HomePage"
+            android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

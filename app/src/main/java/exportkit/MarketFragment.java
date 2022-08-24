@@ -1,8 +1,10 @@
 package exportkit;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
@@ -26,7 +28,7 @@ import static android.content.ContentValues.TAG;
  * Use the {@link MarketFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MarketFragment extends Fragment {
+public class MarketFragment extends Fragment implements MarketAdapter.OnTouchMarketListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -75,7 +77,7 @@ public class MarketFragment extends Fragment {
         }
         mFirestore = FirebaseFirestore.getInstance();
         marketArrayList = new ArrayList<Market>();
-        marketAdapter = new MarketAdapter(getContext(), marketArrayList);
+        marketAdapter = new MarketAdapter(getContext(), marketArrayList,this);
     }
 
     @Override
@@ -83,10 +85,26 @@ public class MarketFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         recyclerView = getView().findViewById(R.id.recycler_view_market);
+        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
         recyclerView.setHasFixedSize(true); //set the size
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         marketArrayList = new ArrayList<>();
-        marketAdapter=new MarketAdapter(this.getContext(),marketArrayList);
+        marketAdapter=new MarketAdapter(this.getContext(),marketArrayList,this);
         recyclerView.setAdapter(marketAdapter);
 
         mFirestore.collection("User").document(userID).collection("Market").orderBy("favorite").get()
@@ -107,6 +125,13 @@ public class MarketFragment extends Fragment {
 
         return inflater.inflate(R.layout.fragment_market, container, false);
 
+    }
+
+    @Override
+    public void onTouchMarket(int position) {
+        Intent intent = new Intent(this.getContext(),TicketActivity.class);
+        intent.putExtra("name",marketArrayList.get(position).getName());
+        startActivity(intent);
     }
 
 }

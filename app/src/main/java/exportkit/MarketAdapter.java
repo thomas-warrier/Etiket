@@ -20,13 +20,16 @@ import java.util.Date;
 
 import exportkit.figma.R;
 
-public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MyViewHolder> {
-    Context context;
-    ArrayList<Market> marketArrayList;
+public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MyViewHolder>{
+    private Context context;
+    private ArrayList<Market> marketArrayList;
+    private OnTouchMarketListener mOnTouchMarketListener;
 
-    public MarketAdapter(Context context, ArrayList<Market> marketArrayList) {
+
+    public MarketAdapter(Context context, ArrayList<Market> marketArrayList,OnTouchMarketListener onTouchMarketListener) {
         this.context = context;
         this.marketArrayList = marketArrayList;
+        this.mOnTouchMarketListener=onTouchMarketListener;
     }
 
     @NonNull
@@ -35,7 +38,7 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MyViewHold
 
         View v= LayoutInflater.from(context).inflate(R.layout.market_recyclerview_layout,parent,false);
 
-        return new MyViewHolder(v);
+        return new MyViewHolder(v,mOnTouchMarketListener);
     }
 
     private String dateFormat(Date date){
@@ -56,13 +59,26 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MyViewHold
         return marketArrayList.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView date;
         ImageView marketLogo;
-        public MyViewHolder(@NonNull View itemView) {
+        OnTouchMarketListener onTouchMarketListener;
+        public MyViewHolder(@NonNull View itemView,OnTouchMarketListener touchMarketListener) {
             super(itemView);
             date = itemView.findViewById(R.id.date_dynamic_market_button);
             marketLogo = itemView.findViewById(R.id.image_dynamic_market_button);
+            this.onTouchMarketListener = touchMarketListener;
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            onTouchMarketListener.onTouchMarket(getAdapterPosition());
+        }
+    }
+
+    public interface OnTouchMarketListener{
+        void onTouchMarket(int position);
     }
 }
