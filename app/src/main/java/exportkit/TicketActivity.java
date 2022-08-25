@@ -19,6 +19,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import exportkit.figma.R;
 
@@ -52,8 +53,13 @@ public class TicketActivity extends AppCompatActivity implements TicketAdapter.O
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(ContentValues.TAG, document.getId() + " => " + document.getData());
-                                document.get("title");
-                                ticketArrayList.add(document.toObject(TicketReciever.class)); //cast the fetched document into an market object and add this market to the list
+                                int imageCount = (int)document.get("imageCount");
+                                ArrayList<String> imageUrlList = new ArrayList<>();
+                                for(int i =0;i < imageCount;i++){
+                                    imageUrlList.add((String)document.get("imageLink"+i));
+                                }
+                                TicketReciever ticketReciever = new TicketReciever((String) document.get("title"),(String)document.get("description"),(Date)document.get("date"),imageUrlList,(String)document.get("ticketId"));
+                                ticketArrayList.add(ticketReciever); //cast the fetched document into an market object and add this market to the list
                             }
                         } else {
                             Log.d(ContentValues.TAG, "Error getting documents: ", task.getException());

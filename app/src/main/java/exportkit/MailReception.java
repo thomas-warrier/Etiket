@@ -249,13 +249,14 @@ public class MailReception {
                 pushFileToFirebase(file, new OnGetUrlListener() {
                             @Override
                             public void urlReciever(String url) {
-                                docData.put("ImageLink"+count,url);
+                                docData.put("imageLink"+count,url);
                                 count++;
                             }
 
                         });
         }
         docData.put("imageCount",count);
+        docData.put("ticketId",ticketID);
         marketRef.update("dateOfLastTicket",ticket.getDate()); //to update the date of the last ticket in the market
 
         mFireStore.collection("User").document(userID).collection("Market").document(marketRef.getId()).collection("Ticket").document(ticketID)

@@ -16,18 +16,16 @@ public class TicketReciever {
     private String description;
     private Date date;
     private ArrayList<String> imageUrlList;
-    private int nbImage;
     private String ticketId;
 
 
     public TicketReciever(){}
 
-    public TicketReciever(String title, String description,Date date,ArrayList<String> imageList,int nbImage,String ticketId) {
+    public TicketReciever(String title, String description,Date date,ArrayList<String> imageList,String ticketId) {
         this.date = date;
         this.title = title;
         this.description = description;
         this.imageUrlList = imageList;
-        this.nbImage=nbImage;
         this.ticketId=ticketId;
     }
     public ArrayList<String> getImageList() {
@@ -60,9 +58,6 @@ public class TicketReciever {
         return imageUrlList;
     }
 
-    public int getNbImage() {
-        return nbImage;
-    }
 
     public String getTicketId() {
         return ticketId;
