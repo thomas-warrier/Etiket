@@ -20,14 +20,16 @@ public class TicketSender {
     private String title;
     private String description;
     private ArrayList<File> imageList;
+    private String ticketId;
 
     public TicketSender(){}
 
-    public TicketSender(Date date, String title, String description, ArrayList<File> imageList) {
+    public TicketSender(Date date, String title, String description, ArrayList<File> imageList,String ticketId) {
         this.date = date;
         this.title = title;
         this.description = description;
         this.imageList = imageList;
+        this.ticketId = ticketId;
     }
     public ArrayList<File> getImageList() {
         return imageList;

@@ -157,7 +157,7 @@ public class MailReception {
                     @Override
                     public void getMarketReference(DocumentReference docRef) {
                         String UID = UUID.randomUUID().toString();
-                        TicketSender ticket = new TicketSender(sentDate,null,subject,listFile); //création du ticket
+                        TicketSender ticket = new TicketSender(sentDate,null,subject,listFile,UID); //création du ticket
                         createTicket(docRef,UID,ticket);
                     }
                 });
@@ -255,6 +255,7 @@ public class MailReception {
 
                         });
         }
+        docData.put("imageCount",count);
         marketRef.update("dateOfLastTicket",ticket.getDate()); //to update the date of the last ticket in the market
 
         mFireStore.collection("User").document(userID).collection("Market").document(marketRef.getId()).collection("Ticket").document(ticketID)
