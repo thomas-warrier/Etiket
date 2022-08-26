@@ -25,6 +25,20 @@ public class HomePage extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomePageFragment()).commit();
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String host = "outlook.office365.com";
+                String port = "995";
+                String userName = "etiket@outlook.fr";
+                String password = "T2o1t1o1";
+
+
+                MailReception receiver = new MailReception();
+                receiver.downloadEmailAttachments(host, port, userName, password);
+            }
+        }).start();
+
     }
 
     private NavigationBarView.OnItemSelectedListener navListener =

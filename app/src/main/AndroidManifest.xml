@@ -8,13 +8,13 @@
         android:allowBackup="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name=".TicketActivity"
+            android:name="exportkit.TicketActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterPage"
+            android:name="exportkit.RegisterPage"
             android:exported="true" />
         <activity
-            android:name=".LoginPage"
+            android:name="exportkit.LoginPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomePage"
+            android:name="exportkit.HomePage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

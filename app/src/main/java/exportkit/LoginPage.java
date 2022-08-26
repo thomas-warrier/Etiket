@@ -41,6 +41,7 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
         if (user!=null){
             Intent intent = new Intent(getApplicationContext(),HomePage.class);
             startActivity(intent);
+            finish();//to finish the activity
         }
     }
     @Override

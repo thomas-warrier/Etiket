@@ -63,20 +63,17 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/look_favorite_ticket_button" />
 
-        <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/your_market_text"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintHorizontal_bias="0.0"
-                    android:layout_marginTop="10dp"
-        >
 
-            <androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"
-                                                       android:layout_height="match_parent"
-                                                       app:layout_constraintTop_toBottomOf="@+id/recycler_view_market"
-                                                       app:layout_constraintRight_toRightOf="parent"
-                                                       app:layout_constraintLeft_toLeftOf="parent"
-            />
-        </ScrollView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_market"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:elevation="4dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/your_market_text" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

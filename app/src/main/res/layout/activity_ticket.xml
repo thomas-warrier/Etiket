@@ -85,7 +85,10 @@
             android:layout_height="match_parent"
             app:layout_constraintTop_toBottomOf="@+id/your_ticket_text"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
+            app:layout_constraintRight_toRightOf="parent"
+            android:elevation="4dp"
+            />
+
     </ScrollView>
 
 

@@ -181,6 +181,7 @@ public class MailReception {
     /**
      * Runs this program with Gmail POP3 server
      */
+    /*
     public static void main(String[] args) {
         String host = "outlook.office365.com";
         String port = "995";
@@ -192,6 +193,7 @@ public class MailReception {
         receiver.downloadEmailAttachments(host, port, userName, password);
 
     }
+    */
 
 
     private void pushFileToFirebase(File file,OnGetUrlListener marketUrlListener) {
@@ -217,7 +219,7 @@ public class MailReception {
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Market market = documentSnapshot.toObject(Market.class);
+                Market market = new Market((String)documentSnapshot.get("name"),(String)documentSnapshot.get("marketLogo"),null,null,false,null);
                 marketListener.marketReciever(market);
             }
         });
@@ -260,7 +262,10 @@ public class MailReception {
         marketRef.update("dateOfLastTicket",ticket.getDate()); //to update the date of the last ticket in the market
 
         mFireStore.collection("User").document(userID).collection("Market").document(marketRef.getId()).collection("Ticket").document(ticketID)
-                .set(docData).addOnSuccessListener(new OnSuccessListener<Void>() { //if success we can delete the email
+                .set(docData);
+
+        //################################# A remettre plus tard,c'est la supression des email ############################################
+        /*.addOnSuccessListener(new OnSuccessListener<Void>() { //if success we can delete the email
                     @Override
                     public void onSuccess(Void unused) {
                         try {
@@ -269,7 +274,7 @@ public class MailReception {
                             e.printStackTrace();
                         }
                     }
-                });
+                });*/
     }
 
     private void getMarketFromFirebase(String emailSender,OnGetMarketDocumentReference marketListener){

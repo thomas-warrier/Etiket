@@ -22,11 +22,7 @@
 		<item name="android:layout_marginRight">7dp</item>
 
 	</style>
-	<style name="roundImageView" parent="">
-		<item name="cornerFamily">rounded</item>
-		<item name="cornerSize">20dp></item>
-		<item name="color">@color/white</item>
-	</style>
+
 
 
 </resources>

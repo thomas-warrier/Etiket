@@ -2,9 +2,10 @@ package exportkit;
 
 
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Market {
+public class Market implements Serializable {
     private String name;
     private String marketLogo;
     private Date date; //need to be the same name in the marketAdapter class
