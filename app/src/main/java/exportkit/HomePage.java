@@ -6,6 +6,8 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -41,6 +43,9 @@ public class HomePage extends AppCompatActivity {
                 }
             }).start();
             }
+        else{
+            Toast.makeText(this, "Aucune connexion", Toast.LENGTH_LONG).show();
+        }
         }
 
 
