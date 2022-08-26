@@ -1,5 +1,7 @@
 package exportkit;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,22 +26,23 @@ public class HomePage extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomePageFragment()).commit();
+        if (isNetworkConnected()){
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String host = "outlook.office365.com";
+                    String port = "995";
+                    String userName = "etiket@outlook.fr";
+                    String password = "T2o1t1o1";
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String host = "outlook.office365.com";
-                String port = "995";
-                String userName = "etiket@outlook.fr";
-                String password = "T2o1t1o1";
 
-
-                MailReception receiver = new MailReception();
-                receiver.downloadEmailAttachments(host, port, userName, password);
+                    MailReception receiver = new MailReception();
+                    receiver.downloadEmailAttachments(host, port, userName, password);
+                }
+            }).start();
             }
-        }).start();
+        }
 
-    }
 
     private NavigationBarView.OnItemSelectedListener navListener =
             new NavigationBarView.OnItemSelectedListener() {
@@ -61,6 +64,12 @@ public class HomePage extends AppCompatActivity {
                     return true;
                 }
             };
+
+    private boolean isNetworkConnected() { //to verify the internet connection
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
 
 
 }
