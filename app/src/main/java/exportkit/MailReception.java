@@ -55,6 +55,8 @@ public class MailReception {
     private FirebaseFirestore mFireStore = FirebaseFirestore.getInstance();
     private static Message message;
     private static int count;
+    private static Map<String, Object> docData;
+
 
     /**
      * Sets the directory where attached files will be stored.
@@ -198,7 +200,7 @@ public class MailReception {
 
     private void pushFileToFirebase(File file,OnGetUrlListener marketUrlListener) {
         Uri mFileUri = Uri.fromFile(file);//I create a URI for my image;
-        StorageReference fileReference = mStorageReference.child("Users/"+userID+"/"+file.getName());
+        StorageReference fileReference = mStorageReference.child("TicketImage/"+file.getName());
         fileReference.putFile(mFileUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -219,7 +221,7 @@ public class MailReception {
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Market market = new Market((String)documentSnapshot.get("name"),(String)documentSnapshot.get("marketLogo"),null,null,false,null);
+                Market market = new Market((String)documentSnapshot.get("name"),(String)documentSnapshot.get("marketLogo"),null,(String)documentSnapshot.get("e-mail"),false,null);
                 marketListener.marketReciever(market);
             }
         });
@@ -241,7 +243,7 @@ public class MailReception {
     }
 
     private void createTicket(DocumentReference marketRef, String ticketID, TicketSender ticket) {
-        Map<String, Object> docData = new HashMap<>();
+        docData = new HashMap<>();
         docData.put("title", ticket.getTitle());
         docData.put("description", ticket.getDescription());
         docData.put("date",ticket.getDate());
