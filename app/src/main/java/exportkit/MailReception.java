@@ -221,7 +221,7 @@ public class MailReception {
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Market market = new Market((String)documentSnapshot.get("name"),(String)documentSnapshot.get("marketLogo"),null,(String)documentSnapshot.get("e-mail"),false,null);
+                Market market = new Market((String)documentSnapshot.get("name"),(String)documentSnapshot.get("marketLogo"),null,(String)documentSnapshot.getId(),false,null);
                 marketListener.marketReciever(market);
             }
         });
@@ -250,14 +250,10 @@ public class MailReception {
         docData.put("favorite",false);
         count = 0;
         for (File file : ticket.getImageList()){
-                pushFileToFirebase(file, new OnGetUrlListener() {
-                            @Override
-                            public void urlReciever(String url) {
-                                docData.put("imageLink"+count,url);
-                                count++;
-                            }
-
-                        });
+                pushFileToFirebase(file, url -> {
+                    docData.put("imageLink"+count,url);
+                    count++;
+                });
         }
         docData.put("imageCount",count);
         docData.put("ticketId",ticketID);
