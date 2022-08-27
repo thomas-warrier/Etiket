@@ -276,7 +276,7 @@ public class MailReception {
     }
 
     private void getMarketFromFirebase(String emailSender,OnGetMarketDocumentReference marketListener){
-        mFireStore.collection("User").document(userID).collection("Market").whereArrayContains("e-mail",emailSender).get()
+        mFireStore.collection("User").document(userID).collection("Market").whereArrayContains("email",emailSender).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
