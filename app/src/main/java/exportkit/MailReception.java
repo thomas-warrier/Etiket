@@ -221,6 +221,7 @@ public class MailReception {
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
+
                 Market market = new Market((String)documentSnapshot.get("name"),(String)documentSnapshot.get("marketLogo"),null,(String)documentSnapshot.getId(),false,null);
                 marketListener.marketReciever(market);
             }
@@ -250,9 +251,13 @@ public class MailReception {
         docData.put("favorite",false);
         count = 0;
         for (File file : ticket.getImageList()){
-                pushFileToFirebase(file, url -> {
-                    docData.put("imageLink"+count,url);
-                    count++;
+                pushFileToFirebase(file, new OnGetUrlListener() {
+                    @Override
+                    public void urlReciever(String url) {
+                        docData.put("imageLink"+count,url);
+                        count++;
+                    }
+
                 });
         }
         docData.put("imageCount",count);
@@ -285,7 +290,6 @@ public class MailReception {
                         getPublicMarketFromFirebase(emailSender, market -> marketListener.getMarketReference(createMarket(market)));
                     }
                     else{
-                        QuerySnapshot document = task.getResult(); //grab the query wich contain the document
                         for (DocumentSnapshot documentSnapshot : task.getResult()){ //grab the document wich contain the right e-mail
                             marketListener.getMarketReference(documentSnapshot.getReference());
                         }

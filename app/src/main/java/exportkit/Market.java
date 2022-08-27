@@ -2,6 +2,8 @@ package exportkit;
 
 
 
+import com.google.firebase.Timestamp;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -24,6 +26,8 @@ public class Market implements Serializable {
         this.favorite = favorite;
         this.marketId=marketId;
     }
+
+
 
     public Date getDate() {
         return date;

@@ -1,13 +1,8 @@
 package exportkit;
 
-import android.media.Image;
 
-import com.google.firebase.storage.StorageReference;
+import com.google.firebase.Timestamp;
 
-import java.io.File;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -21,8 +16,8 @@ public class TicketReciever {
 
     public TicketReciever(){}
 
-    public TicketReciever(String title, String description,Date date,ArrayList<String> imageList,String ticketId) {
-        this.date = date;
+    public TicketReciever(String title, String description, Timestamp date, ArrayList<String> imageList, String ticketId) {
+        this.date = date.toDate();
         this.title = title;
         this.description = description;
         this.imageUrlList = imageList;

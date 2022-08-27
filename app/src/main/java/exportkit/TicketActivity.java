@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -58,7 +59,7 @@ public class TicketActivity extends AppCompatActivity implements TicketAdapter.O
                                 for(int i =0;i < imageCount;i++){
                                     imageUrlList.add((String)document.get("imageLink"+i));
                                 }
-                                TicketReciever ticketReciever = new TicketReciever((String) document.get("title"),(String)document.get("description"),(Date)document.get("date"),imageUrlList,(String)document.get("ticketId"));
+                                TicketReciever ticketReciever = new TicketReciever((String) document.get("title"),(String)document.get("description"),(Timestamp) document.get("date"),imageUrlList,(String)document.get("ticketId"));
                                 ticketArrayList.add(ticketReciever); //cast the fetched document into an market object and add this market to the list
                             }
                         } else {

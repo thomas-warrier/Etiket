@@ -42,9 +42,8 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MyViewHold
     }
 
     private String dateFormat(Date date){
-        DateFormat dateFormat = new SimpleDateFormat("dd MMMM  hh:mm");
-        String strDate = dateFormat.format(date);
-        return strDate;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM  hh:mm");
+        return dateFormat.format(date);
     }
 
     @Override

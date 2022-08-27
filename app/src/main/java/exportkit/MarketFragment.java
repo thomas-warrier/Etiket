@@ -14,12 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.*;
 import exportkit.figma.R;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import static android.content.ContentValues.TAG;
 
@@ -71,7 +73,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnTouchMar
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                marketArrayList.add(document.toObject(Market.class)); //cast the fetched document into an market object and add this market to the list
+                                marketArrayList.add(new Market((String)document.get("marketName"),(String)document.get("MarketLogo"),((Timestamp)document.get("dateOfLastTicket")).toDate(),(String)document.get("email"),(boolean) document.get("favorite"),(String)document.get("marketId"))); //cast the fetched document into an market object and add this market to the list
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
