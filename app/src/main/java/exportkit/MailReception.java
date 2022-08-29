@@ -223,7 +223,7 @@ public class MailReception {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
 
-                Market market = new Market((String)documentSnapshot.get("name"),(String)documentSnapshot.get("marketLogo"),null,(String)documentSnapshot.getId(),false,null);
+                Market market = new Market((String)documentSnapshot.get("name"),(String)documentSnapshot.get("marketLogo"),null,documentSnapshot.getId(),false,null);
                 marketListener.marketReciever(market);
             }
         });
