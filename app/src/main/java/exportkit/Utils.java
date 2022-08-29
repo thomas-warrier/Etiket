@@ -9,6 +9,7 @@ import exportkit.figma.R;
 import okhttp3.Cache;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -33,7 +34,7 @@ public class Utils {
         // here we are making HTTP call to fetch data from
         // URL.
         Request request
-                = new Request.Builder().url(url).build();
+                = new Request.Builder().url(HttpUrl.parse(url)).build();
         httpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e)

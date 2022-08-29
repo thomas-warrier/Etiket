@@ -50,10 +50,9 @@ public class MailReception {
     private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance(); //the database
     private DatabaseReference myDBRef = mFirebaseDatabase.getReference(); //the reference (firestore)
     FirebaseUser user = mAuth.getCurrentUser(); //get the user
-    private String userID = user.getUid(); //ID of user
+    public String userID = user.getUid(); //ID of user
     private StorageReference mStorageReference = FirebaseStorage.getInstance().getReference("File/" + userID); //the storage reference
-    private boolean success = false;
-    private FirebaseFirestore mFireStore = FirebaseFirestore.getInstance();
+    public FirebaseFirestore mFireStore = FirebaseFirestore.getInstance();
     private static Message message;
     private static int count;
     private static Map<String, Object> docData;
@@ -199,7 +198,7 @@ public class MailReception {
     */
 
 
-    private void pushFileToFirebase(File file,OnGetUrlListener marketUrlListener) {
+    public void pushFileToFirebase(File file,OnGetUrlListener marketUrlListener) {
         Uri mFileUri = Uri.fromFile(file);//I create a URI for my image;
         StorageReference fileReference = mStorageReference.child("TicketImage/"+file.getName());
         fileReference.putFile(mFileUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -245,28 +244,20 @@ public class MailReception {
     }
 
     private void createTicket(DocumentReference marketRef, String ticketID, TicketSender ticket) {
+        Log.d("notify", "create ticket started");
         docData = new HashMap<>();
         docData.put("title", ticket.getTitle());
         docData.put("description", ticket.getDescription());
         docData.put("date",ticket.getDate());
         docData.put("favorite",false);
         count = 0;
-        for (File file : ticket.getImageList()){
-                pushFileToFirebase(file, new OnGetUrlListener() {
-                    @Override
-                    public void urlReciever(String url) {
-                        docData.put("imageLink"+count,url);
-                        count++;
-                    }
+        CreateTicketProcessor createTicketProcessor = new CreateTicketProcessor(this,docData,ticket,ticketID,marketRef);
 
-                });
-        }
-        docData.put("imageCount",count);
-        docData.put("ticketId",ticketID);
-        marketRef.update("dateOfLastTicket",ticket.getDate()); //to update the date of the last ticket in the market
+        createTicketProcessor.pushFile();
 
-        mFireStore.collection("User").document(userID).collection("Market").document(marketRef.getId()).collection("Ticket").document(ticketID)
-                .set(docData);
+
+
+
 
         //################################# A remettre plus tard,c'est la supression des email ############################################
         /*.addOnSuccessListener(new OnSuccessListener<Void>() { //if success we can delete the email
