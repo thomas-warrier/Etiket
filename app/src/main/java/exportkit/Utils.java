@@ -34,7 +34,7 @@ public class Utils {
         // here we are making HTTP call to fetch data from
         // URL.
         Request request
-                = new Request.Builder().url(HttpUrl.parse(url)).build();
+                = new Request.Builder().url(url).build();
         httpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e)

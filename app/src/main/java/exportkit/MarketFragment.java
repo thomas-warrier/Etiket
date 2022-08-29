@@ -36,9 +36,6 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnTouchMar
     MarketAdapter marketAdapter;
     FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public MarketFragment() {
         // Required empty public constructor
@@ -50,7 +47,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnTouchMar
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mFirestore = FirebaseFirestore.getInstance();
-        marketArrayList = new ArrayList<Market>();
+        marketArrayList = new ArrayList<>();
         marketAdapter = new MarketAdapter(getContext(), marketArrayList,this);
     }
 
@@ -73,12 +70,13 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnTouchMar
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                marketArrayList.add(new Market((String)document.get("marketName"),(String)document.get("MarketLogo"),((Timestamp)document.get("dateOfLastTicket")).toDate(),(String)document.get("email"),(boolean) document.get("favorite"),(String)document.get("marketId"))); //cast the fetched document into an market object and add this market to the list
+                                Market market =new Market((String)document.get("marketName"),(String)document.get("MarketLogo"),((Timestamp)document.get("dateOfLastTicket")).toDate(),(String)document.get("email"),(boolean) document.get("favorite"),(String)document.get("marketId"));
+                                marketArrayList.add(market); //cast the fetched document into an market object and add this market to the list
                             }
+                            marketAdapter.notifyDataSetChanged(); //to update le recyclerview when new market
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
-                        marketAdapter.notifyDataSetChanged(); //to update le recyclerview when new market
                     }
                 });
 
