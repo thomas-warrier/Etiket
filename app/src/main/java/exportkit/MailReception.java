@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -281,7 +282,7 @@ public class MailReception {
     }
 
     private void getMarketFromFirebase(String emailSender,OnGetMarketDocumentReference marketListener){
-        mFireStore.collection("User").document(userID).collection("Market").whereArrayContains("email",emailSender).get()
+        mFireStore.collection("User").document(userID).collection("Market").whereEqualTo("email",emailSender).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -290,7 +291,7 @@ public class MailReception {
                         getPublicMarketFromFirebase(emailSender, market -> marketListener.getMarketReference(createMarket(market)));
                     }
                     else{
-                        for (DocumentSnapshot documentSnapshot : task.getResult()){ //grab the document wich contain the right e-mail
+                        for (QueryDocumentSnapshot documentSnapshot : task.getResult()){ //grab the document wich contain the right e-mail
                             marketListener.getMarketReference(documentSnapshot.getReference());
                         }
                     }

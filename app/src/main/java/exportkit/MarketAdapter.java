@@ -49,6 +49,7 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MarketAdapter.MyViewHolder holder, int position) {
         Market market = marketArrayList.get(position);
+        Utils.fetchSvg(context, market.getMarketLogo(), holder.marketLogo);
         Picasso.get().load(market.getMarketLogo()).into(holder.marketLogo);//set the logo content
         holder.date.setText("Dernier Ticket : "+ dateFormat(market.getDate())); //set the content of the date with a formated date
     }
