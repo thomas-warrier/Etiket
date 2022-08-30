@@ -15,14 +15,35 @@
         <ImageView
             android:id="@+id/image_dynamic_market_button"
             android:layout_width="match_parent"
-            android:layout_height="115dp"
+            android:layout_height="110dp"
             android:src="@drawable/ic_ticket_nav"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/date_dynamic_market_button"
+            app:layout_constraintBottom_toTopOf="@+id/linear_layout_market_dynamic_button"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="15dp"
             />
-
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_dynamic_market_button"
+            android:layout_marginTop="10dp"
+            android:paddingBottom="10dp"
+            android:id="@+id/linear_layout_market_dynamic_button"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="16sp"
+                android:text="Date du dernier ticket : "
+                android:textColor="#526581"
+                />
             <TextView
                 android:id="@+id/date_dynamic_market_button"
                 android:layout_width="wrap_content"
@@ -31,11 +52,9 @@
                 android:text="Title"
                 android:fontFamily="@font/roboto_regular"
                 android:textColor="#526581"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image_dynamic_market_button"
-                android:layout_marginTop="10dp"
                 />
+        </LinearLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
