@@ -6,8 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,7 +36,7 @@ public class TicketActivity extends AppCompatActivity implements TicketAdapter.O
     private ArrayList<TicketReciever> ticketArrayList;
     private TicketAdapter ticketAdapter;
     private FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();;
-    private static ArrayList<String> imageUrlList;
+
 
 
     @Override
@@ -50,6 +53,14 @@ public class TicketActivity extends AppCompatActivity implements TicketAdapter.O
         recyclerView.setHasFixedSize(true); //set the size
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(ticketAdapter);
+        ImageButton backButton = findViewById(R.id.back_arrow_to_market);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
 
         mFirestore.collection("User").document(userID).collection("Market").document(getIntent().getStringExtra("marketId")).collection("Ticket").orderBy("favorite").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -58,16 +69,8 @@ public class TicketActivity extends AppCompatActivity implements TicketAdapter.O
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(ContentValues.TAG, document.getId() + " => " + document.getData());
-                                Map<String, Object> docData = document.getData();
-                                long imageCount = (long)docData.get("imageCount");
-                                Log.d("ticketTest", "image count = "+imageCount);
-                                imageUrlList = new ArrayList<>();
-                                if(imageCount>=1){
-                                    for(int i =0;i < imageCount;i++){
-                                        imageUrlList.add((String)docData.get("imageLink"+i));
-                                    }
-                                }
-                                TicketReciever ticketReciever = new TicketReciever((String) docData.get("title"),(String)docData.get("description"),(Timestamp) docData.get("date"),imageUrlList,(String)docData.get("ticketId"));
+                                TicketReciever ticketReciever = document.toObject(TicketReciever.class);
+                                Log.d("ticketTest", "title = "+ticketReciever.getTitle());
                                 ticketArrayList.add(ticketReciever); //cast the fetched document into an market object and add this market to the list
                             }
                         } else {
@@ -82,7 +85,11 @@ public class TicketActivity extends AppCompatActivity implements TicketAdapter.O
 
     @Override
     public void onTouchTicket(int position) {
-        Log.d("OntouchMarket", "onTouchTicket:ca marche !");
-        //rajouter la Dialog avec infos complémentaire
+        Intent intent = new Intent(this,TicketPreviewFragment.class);
+        intent.putExtra("title",ticketArrayList.get(position).getTitle());
+        intent.putExtra("description",ticketArrayList.get(position).getDescription());
+        intent.putExtra("date",ticketArrayList.get(position).getDate());
+        intent.putExtra("imageUrlArray",ticketArrayList.get(position).getImageUrlList());
+        intent.putExtra("ticketId",ticketArrayList.get(position).getTicketId());
     }
 }

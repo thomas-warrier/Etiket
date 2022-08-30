@@ -1,6 +1,7 @@
 package exportkit;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
     @Override
     public TicketAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View v= LayoutInflater.from(context).inflate(R.layout.market_recyclerview_layout,parent,false);
+        View v= LayoutInflater.from(context).inflate(R.layout.dynamic_ticket_button_layout,parent,false);
 
         return new MyViewHolder(v,mOnTouchTicketListener);
     }
@@ -43,7 +44,14 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         TicketReciever ticket = ticketArrayList.get(position);
-        holder.date.setText("Dernier Ticket : "+ dateFormat(ticket.getDate())); //set the content of the date with a formated date
+        Log.d("marketTest", "market title = "+ticket.getTitle());
+        if(ticket.getTitle()==null) {
+            holder.title.setVisibility(View.GONE);
+        }else{
+            holder.title.setText(ticket.getTitle());
+        }
+        holder.description.setText(ticket.getDescription());
+        holder.date.setText(dateFormat(ticket.getDate())); //set the content of the date with a formated date
     }
 
     private String dateFormat(Date date){
@@ -61,14 +69,16 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView title;
+        TextView description;
         TextView date;
-        ImageView ticketImage;
+
         OnTouchTicketListener onTouchTicketListener;
         public MyViewHolder(@NonNull View itemView,OnTouchTicketListener touchMarketListener) {
             super(itemView);
             title = itemView.findViewById(R.id.title_dynamic_ticket_button);
+            description=itemView.findViewById(R.id.description_dynamic_ticket_button);
             date = itemView.findViewById(R.id.date_dynamic_ticket_button);
-            ticketImage = itemView.findViewById(R.id.image_dynamic_ticket_button);
+
             this.onTouchTicketListener = touchMarketListener;
             itemView.setOnClickListener(this);
         }

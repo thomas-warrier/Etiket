@@ -44,10 +44,9 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MarketAdapter.MyViewHolder holder, int position) {
-        System.out.println(position);
         Market market = marketArrayList.get(position);
         Utils.fetchSvg(context, market.getMarketLogo(), holder.marketLogo);
-        holder.dateOfLastTicket.setText("Dernier Ticket : "+ dateFormat(market.getDateOfLastTicket())); //set the content of the date with a formated date
+        holder.dateOfLastTicket.setText(dateFormat(market.getDateOfLastTicket())); //set the content of the date with a formated date
     }
 
     @Override

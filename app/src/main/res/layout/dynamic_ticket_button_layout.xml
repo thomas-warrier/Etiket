@@ -29,22 +29,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/date_dynamic_ticket_button"
+            app:layout_constraintTop_toBottomOf="@+id/date_dynamic_ticket_button"
             app:layout_constraintLeft_toLeftOf="parent"
             android:id="@+id/linear_layout_ticket_dynamic_button"
             android:gravity="left"
             android:paddingLeft="20dp"
             >
+
             <TextView
                 android:id="@+id/title_dynamic_ticket_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="Title"
                 android:fontFamily="@font/roboto_bold"
+                android:text="Title"
                 android:textColor="#526581"
-                app:layout_constraintLeft_toLeftOf="parent"
-                />
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintLeft_toLeftOf="parent" />
             <TextView
                 android:id="@+id/description_dynamic_ticket_button"
                 android:layout_width="wrap_content"
@@ -71,7 +72,7 @@
             android:src="@drawable/ic_favoris_nav"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linear_layout_ticket_dynamic_button" />
+            app:layout_constraintTop_toBottomOf="@+id/linear_layout_ticket_dynamic_button" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

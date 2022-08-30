@@ -5,6 +5,7 @@ import android.util.Log;
 import com.google.firebase.firestore.DocumentReference;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class CreateTicketProcessor {
@@ -14,6 +15,7 @@ public class CreateTicketProcessor {
     private int count;
     private String ticketID;
     private DocumentReference marketRef;
+    private static ArrayList<String> imageArray;
 
     public CreateTicketProcessor(MailReception mailReception, Map<String, Object> docData,TicketSender ticket,String ticketID, DocumentReference marketRef){
         this.mailReception=mailReception;
@@ -27,11 +29,12 @@ public class CreateTicketProcessor {
         if(ticket.getImageList().isEmpty()){
             finalizeTicket();
         }
+        imageArray=new ArrayList<>();
         for (File file : ticket.getImageList()){
             mailReception.pushFileToFirebase(file, new OnGetUrlListener() {
                 @Override
                 public void urlReciever(String url) {
-                    docData.put("imageLink"+count,url);
+                    imageArray.add(url);
                     count++;
                     if(count==ticket.getImageList().size()){
                         finalizeTicket();
@@ -42,8 +45,7 @@ public class CreateTicketProcessor {
     }
 
     private void finalizeTicket() {
-        docData.put("imageCount", count);
-        Log.d("notify", "count = " + count);
+        docData.put("imageArray",imageArray);
         docData.put("ticketId", ticketID);
         marketRef.update("dateOfLastTicket", ticket.getDate()); //to update the date of the last ticket in the market
 
