@@ -10,10 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.squareup.picasso.Picasso;
-
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -51,7 +47,7 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MyViewHold
         System.out.println(position);
         Market market = marketArrayList.get(position);
         Utils.fetchSvg(context, market.getMarketLogo(), holder.marketLogo);
-        holder.date.setText("Dernier Ticket : "+ dateFormat(market.getDate())); //set the content of the date with a formated date
+        holder.dateOfLastTicket.setText("Dernier Ticket : "+ dateFormat(market.getDateOfLastTicket())); //set the content of the date with a formated date
     }
 
     @Override
@@ -61,12 +57,12 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MyViewHold
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView date;
+        TextView dateOfLastTicket;
         ImageView marketLogo;
         OnTouchMarketListener onTouchMarketListener;
         public MyViewHolder(@NonNull View itemView,OnTouchMarketListener touchMarketListener) {
             super(itemView);
-            date = itemView.findViewById(R.id.date_dynamic_market_button);
+            dateOfLastTicket = itemView.findViewById(R.id.date_dynamic_market_button);
             marketLogo = itemView.findViewById(R.id.image_dynamic_market_button);
             this.onTouchMarketListener = touchMarketListener;
             itemView.setOnClickListener(this);

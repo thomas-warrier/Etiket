@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
@@ -21,7 +20,7 @@ import com.google.firebase.firestore.*;
 import exportkit.figma.R;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
@@ -70,7 +69,12 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnTouchMar
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                Market market =new Market((String)document.get("marketName"),(String)document.get("MarketLogo"),((Timestamp)document.get("dateOfLastTicket")).toDate(),(String)document.get("email"),(boolean) document.get("favorite"),(String)document.get("marketId"));
+                                Map<String, Object> docData = document.getData();
+                                Log.d("marketTest", ""+docData);
+                                Log.d("marketTest", ""+docData.get("marketLogo"));
+                                Log.d("marketTest", ""+(String)docData.get("marketLogo"));
+                                Market market = document.toObject(Market.class);
+                                Log.d("marketTest", ""+market.getMarketLogo());
                                 marketArrayList.add(market); //cast the fetched document into an market object and add this market to the list
                             }
                             marketAdapter.notifyDataSetChanged(); //to update le recyclerview when new market
@@ -87,7 +91,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnTouchMar
     @Override
     public void onTouchMarket(int position) {
         Intent intent = new Intent(this.getContext(),TicketActivity.class);
-        intent.putExtra("marketName",marketArrayList.get(position).getName());
+        intent.putExtra("marketName",marketArrayList.get(position).getMarketName());
         intent.putExtra("marketId",marketArrayList.get(position).getMarketId());
         startActivity(intent);
     }

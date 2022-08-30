@@ -43,7 +43,6 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         TicketReciever ticket = ticketArrayList.get(position);
-        Picasso.get().load(ticket.getImage(1)).into(holder.ticketImage);//set the logo content
         holder.date.setText("Dernier Ticket : "+ dateFormat(ticket.getDate())); //set the content of the date with a formated date
     }
 

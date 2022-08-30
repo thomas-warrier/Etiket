@@ -1,53 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   android:layout_width="wrap_content"
-                                                   android:layout_height="wrap_content"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="17dp"
+    app:cardElevation="5dp"
+    android:layout_margin="16dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardviewimage_dynamic_ticket_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@android:color/transparent"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <ImageView
-            android:id="@+id/image_dynamic_ticket_button"
-            android:layout_width="115dp"
-            android:layout_height="115dp"
-            android:src="@drawable/ic_ticket_nav"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.cardview.widget.CardView>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-            android:id="@+id/title_dynamic_ticket_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:text="Title"
-            android:fontFamily="@font/roboto_bold"
-            android:textColor="#526581"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/cardviewimage_dynamic_ticket_button"
-            android:layout_marginLeft="10dp"
-
-    />
-    <TextView
+        <TextView
             android:id="@+id/date_dynamic_ticket_button"
             android:layout_width="wrap_content"
-            android:textSize="20sp"
-            android:text="Date"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="date"
+            android:fontFamily="@font/roboto_regular"
             android:textColor="#526581"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/cardviewimage_dynamic_ticket_button"
-            app:layout_constraintTop_toBottomOf="@id/title_dynamic_ticket_button"
-            android:layout_marginLeft="10dp"
-    />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/date_dynamic_ticket_button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/linear_layout_ticket_dynamic_button"
+            android:gravity="left"
+            android:paddingLeft="20dp"
+            >
+            <TextView
+                android:id="@+id/title_dynamic_ticket_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Title"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="#526581"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
+            <TextView
+                android:id="@+id/description_dynamic_ticket_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="description"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="#526581"
+                app:layout_constraintLeft_toLeftOf="@+id/title_dynamic_ticket_button"
+                app:layout_constraintTop_toBottomOf="@+id/title_dynamic_ticket_button"
+                android:layout_marginTop="5dp"
+                />
+        </LinearLayout>
+
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_favoris_nav"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linear_layout_ticket_dynamic_button"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginBottom="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="5dp"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -26,7 +26,6 @@ import java.io.IOException;
 import java.util.*;
 
 import javax.mail.Address;
-import javax.mail.Flags;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -54,7 +53,6 @@ public class MailReception {
     private StorageReference mStorageReference = FirebaseStorage.getInstance().getReference("File/" + userID); //the storage reference
     public FirebaseFirestore mFireStore = FirebaseFirestore.getInstance();
     private static Message message;
-    private static int count;
     private static Map<String, Object> docData;
 
 
@@ -230,7 +228,7 @@ public class MailReception {
 
     private DocumentReference createMarket(Market market) {
         Map<String, Object> docData = new HashMap<>();
-        docData.put("marketName",market.getName());
+        docData.put("marketName",market.getMarketName());
         docData.put("marketLogo", market.getMarketLogo());
         docData.put("dateOfLastTicket",null);
         docData.put("email",market.getEmail());
@@ -250,7 +248,6 @@ public class MailReception {
         docData.put("description", ticket.getDescription());
         docData.put("date",ticket.getDate());
         docData.put("favorite",false);
-        count = 0;
         CreateTicketProcessor createTicketProcessor = new CreateTicketProcessor(this,docData,ticket,ticketID,marketRef);
 
         createTicketProcessor.pushFile();

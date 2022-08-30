@@ -21,6 +21,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 import exportkit.figma.R;
 
@@ -28,10 +29,13 @@ public class TicketActivity extends AppCompatActivity implements TicketAdapter.O
     private FirebaseAuth mAuth = FirebaseAuth.getInstance(); //grab the authentification instance
     private FirebaseUser user = mAuth.getCurrentUser(); //get the user
     private String userID = user.getUid(); //ID of user
-    RecyclerView recyclerView;
-    ArrayList<TicketReciever> ticketArrayList;
-    TicketAdapter ticketAdapter;
-    FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();;
+    private RecyclerView recyclerView;
+    private ArrayList<TicketReciever> ticketArrayList;
+    private TicketAdapter ticketAdapter;
+    private FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();;
+    private static ArrayList<String> imageUrlList;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,12 +58,16 @@ public class TicketActivity extends AppCompatActivity implements TicketAdapter.O
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(ContentValues.TAG, document.getId() + " => " + document.getData());
-                                int imageCount = (int)document.get("imageCount");
-                                ArrayList<String> imageUrlList = new ArrayList<>();
-                                for(int i =0;i < imageCount;i++){
-                                    imageUrlList.add((String)document.get("imageLink"+i));
+                                Map<String, Object> docData = document.getData();
+                                long imageCount = (long)docData.get("imageCount");
+                                Log.d("ticketTest", "image count = "+imageCount);
+                                imageUrlList = new ArrayList<>();
+                                if(imageCount>=1){
+                                    for(int i =0;i < imageCount;i++){
+                                        imageUrlList.add((String)docData.get("imageLink"+i));
+                                    }
                                 }
-                                TicketReciever ticketReciever = new TicketReciever((String) document.get("title"),(String)document.get("description"),(Timestamp) document.get("date"),imageUrlList,(String)document.get("ticketId"));
+                                TicketReciever ticketReciever = new TicketReciever((String) docData.get("title"),(String)docData.get("description"),(Timestamp) docData.get("date"),imageUrlList,(String)docData.get("ticketId"));
                                 ticketArrayList.add(ticketReciever); //cast the fetched document into an market object and add this market to the list
                             }
                         } else {

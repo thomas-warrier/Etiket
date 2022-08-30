@@ -2,15 +2,13 @@ package exportkit;
 
 
 
-import com.google.firebase.Timestamp;
-
 import java.io.Serializable;
 import java.util.Date;
 
 public class Market implements Serializable {
-    private String name;
+    private String marketName;
     private String marketLogo;
-    private Date date; //need to be the same name in the marketAdapter class
+    private Date dateOfLastTicket; //need to be the same name in the marketAdapter class
     private String email;
     private boolean favorite;
     private String marketId;
@@ -18,10 +16,10 @@ public class Market implements Serializable {
     public Market() {
     } //empty constructor for firebase
 
-    public Market(String name,String marketLogo,Date date,String email,boolean favorite,String marketId) {
-        this.name = name;
+    public Market(String marketName,String marketLogo,Date dateOfLastTicket,String email,boolean favorite,String marketId) {
+        this.marketName = marketName;
         this.marketLogo = marketLogo;
-        this.date=date;
+        this.dateOfLastTicket =dateOfLastTicket;
         this.email=email;
         this.favorite = favorite;
         this.marketId=marketId;
@@ -29,8 +27,8 @@ public class Market implements Serializable {
 
 
 
-    public Date getDate() {
-        return date;
+    public Date getDateOfLastTicket() {
+        return dateOfLastTicket;
     }
 
     public String getMarketLogo() {
@@ -50,8 +48,8 @@ public class Market implements Serializable {
         this.favorite = favorite;
     }
 
-    public String getName() {
-        return name;
+    public String getMarketName() {
+        return marketName;
     }
 
     public String getMarketId() {
