@@ -132,6 +132,33 @@
             android:text="Description"
             android:textColor="@color/black"
             />
-
     </LinearLayout>
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewPagerImageSlider"
+        app:layout_constraintTop_toBottomOf="@id/description_linear_layout_ticket_preview"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp"
+        >
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/idPDFView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        </com.github.barteksc.pdfviewer.PDFView>
+    </androidx.cardview.widget.CardView>
+    </androidx.viewpager2.widget.ViewPager2>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
