@@ -12,15 +12,17 @@ public class TicketReciever {
     private Date date;
     private ArrayList<String> imageUrlList;
     private String ticketId;
+    private boolean favorite;
 
 
     public TicketReciever(){}
 
-    public TicketReciever(String title, String description, Timestamp date, ArrayList<String> imageList, String ticketId) {
+    public TicketReciever(String title, String description, Timestamp date, ArrayList<String> imageList,boolean favorite, String ticketId) {
         this.date = date.toDate();
         this.title = title;
         this.description = description;
         this.imageUrlList = imageList;
+        this.favorite=favorite;
         this.ticketId=ticketId;
     }
     public ArrayList<String> getImageList() {
@@ -53,6 +55,13 @@ public class TicketReciever {
         return imageUrlList;
     }
 
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
 
     public String getTicketId() {
         return ticketId;

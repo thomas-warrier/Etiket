@@ -5,13 +5,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -25,7 +23,6 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
     private ArrayList<TicketReciever> ticketArrayList;
     private OnTouchTicketListener mOnTouchTicketListener;
 
-
     public TicketAdapter(Context context, ArrayList<TicketReciever> ticketArrayList, OnTouchTicketListener onTouchTicketListener) {
         this.context = context;
         this.ticketArrayList = ticketArrayList;
@@ -36,7 +33,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
     @Override
     public TicketAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View v= LayoutInflater.from(context).inflate(R.layout.dynamic_ticket_button_layout,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.dynamic_ticket_button_layout,parent,false);
 
         return new MyViewHolder(v,mOnTouchTicketListener);
     }
@@ -45,6 +42,12 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         TicketReciever ticket = ticketArrayList.get(position);
         Log.d("marketTest", "market title = "+ticket.getTitle());
+        if(ticket.isFavorite()==false){
+            holder.favorite.setImageResource(R.drawable.ic_favoris_nav);
+        }
+        else{
+            holder.favorite.setImageResource(R.drawable.ic_favorite_yellow);
+        }
         if(ticket.getTitle()==null) {
             holder.title.setVisibility(View.GONE);
         }else{
@@ -71,15 +74,22 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
         TextView title;
         TextView description;
         TextView date;
-
+        ImageButton favorite;
         OnTouchTicketListener onTouchTicketListener;
-        public MyViewHolder(@NonNull View itemView,OnTouchTicketListener touchMarketListener) {
+        public MyViewHolder(@NonNull View itemView, OnTouchTicketListener touchMarketListener) {
             super(itemView);
             title = itemView.findViewById(R.id.title_dynamic_ticket_button);
             description=itemView.findViewById(R.id.description_dynamic_ticket_button);
             date = itemView.findViewById(R.id.date_dynamic_ticket_button);
+            favorite = itemView.findViewById(R.id.favorite_ticket_activity_button);
 
             this.onTouchTicketListener = touchMarketListener;
+            favorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onTouchTicketListener.onTouchFavorite(getAdapterPosition());
+                }
+            });
             itemView.setOnClickListener(this);
         }
 
@@ -91,5 +101,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
 
     public interface OnTouchTicketListener{
         void onTouchTicket(int position);
+        void onTouchFavorite(int position);
     }
+
 }

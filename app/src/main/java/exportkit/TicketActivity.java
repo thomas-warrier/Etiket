@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 import exportkit.figma.R;
 
-public class TicketActivity extends AppCompatActivity implements TicketAdapter.OnTouchTicketListener{
+public class TicketActivity extends AppCompatActivity implements TicketAdapter.OnTouchTicketListener {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance(); //grab the authentification instance
     private FirebaseUser user = mAuth.getCurrentUser(); //get the user
     private String userID = user.getUid(); //ID of user
@@ -59,6 +59,7 @@ public class TicketActivity extends AppCompatActivity implements TicketAdapter.O
         });
 
 
+
         mFirestore.collection("User").document(userID).collection("Market").document(getIntent().getStringExtra("marketId")).collection("Ticket").orderBy("favorite").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -73,7 +74,7 @@ public class TicketActivity extends AppCompatActivity implements TicketAdapter.O
                         } else {
                             Log.d(ContentValues.TAG, "Error getting documents: ", task.getException());
                         }
-                        ticketAdapter.notifyDataSetChanged(); //to update le recyclerview when new market
+                        ticketAdapter.notifyDataSetChanged(); //to update the recyclerview when new market
                     }
                 });
     }
@@ -89,4 +90,20 @@ public class TicketActivity extends AppCompatActivity implements TicketAdapter.O
         intent.putExtra("imageUrlArray",ticketArrayList.get(position).getImageUrlList());
         intent.putExtra("ticketId",ticketArrayList.get(position).getTicketId());
     }
+
+    @Override
+    public void onTouchFavorite(int position){
+        ImageButton favoriteButton = findViewById(R.id.favorite_ticket_activity_button);
+        TicketReciever ticket = ticketArrayList.get(position);
+                if(ticket.isFavorite()==false){
+                    favoriteButton.setImageResource(R.drawable.ic_favorite_yellow);
+                    ticket.setFavorite(true);
+                    mFirestore.collection("User").document(userID).collection("Market").document(getIntent().getStringExtra("marketId")).collection("Ticket").document(ticket.getTicketId()).update("favorite",true);
+                }
+                else{
+                    favoriteButton.setImageResource(R.drawable.ic_favoris_nav);
+                    ticket.setFavorite(false);
+                    mFirestore.collection("User").document(userID).collection("Market").document(getIntent().getStringExtra("marketId")).collection("Ticket").document(ticket.getTicketId()).update("favorite",false);
+                }
+            }
 }
