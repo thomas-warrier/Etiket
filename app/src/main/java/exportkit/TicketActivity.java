@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -23,8 +22,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Map;
 
 import exportkit.figma.R;
 
@@ -43,7 +40,7 @@ public class TicketActivity extends AppCompatActivity implements TicketAdapter.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket);
-        TextView marketName = findViewById(R.id.market_name_ticket_activity);
+        TextView marketName = findViewById(R.id.title_ticket_preview);
         marketName.setText(getIntent().getStringExtra("marketName"));
         mFirestore = FirebaseFirestore.getInstance();
         ticketArrayList = new ArrayList<>();

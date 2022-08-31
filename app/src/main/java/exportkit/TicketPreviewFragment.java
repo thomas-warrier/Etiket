@@ -10,11 +10,7 @@ import android.view.ViewGroup;
 
 import exportkit.figma.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TicketPreviewFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class TicketPreviewFragment extends Fragment {
 
     public TicketPreviewFragment() {

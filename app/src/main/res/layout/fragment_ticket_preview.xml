@@ -1,13 +1,137 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="exportkit.TicketPreviewFragment">
+    tools:context="exportkit.TicketActivity">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="50dp"
+        android:elevation="5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_rectangle_background"
+        android:visibility="visible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/rectangle_background_ticket_activity"/>
 
-</FrameLayout>
+    <ImageButton
+        android:id="@+id/back_arrow_to_ticket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:background="@android:color/transparent"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/ic_back_arrow"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#6B94FF"
+        android:contentDescription="@string/background_arrow"
+        android:elevation="6dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/back_arrow_to_ticket"
+        app:layout_constraintBottom_toBottomOf="@id/back_arrow_to_ticket"
+        android:text="Title"
+        android:id="@+id/title_ticket_preview"
+        android:fontFamily="@font/roboto_bold"
+        android:textColor="@color/black"
+        android:elevation="6dp"
+        />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/ic_edit_mode"
+        app:layout_constraintBottom_toBottomOf="@id/back_arrow_to_ticket"
+        app:layout_constraintRight_toLeftOf="@id/favorite_ticket_preview_button"
+        app:layout_constraintTop_toTopOf="@id/back_arrow_to_ticket"
+        android:contentDescription="@string/edition_mode"
+        android:elevation="6dp"/>
+    <ImageButton
+        android:id="@+id/favorite_ticket_preview_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/transparent"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/ic_favoris_nav"
+        app:layout_constraintBottom_toBottomOf="@id/back_arrow_to_ticket"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/back_arrow_to_ticket"
+        android:contentDescription="@string/add_favorite"
+        android:elevation="6dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/rectangle_background_ticket_activity"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:paddingTop="20dp"
+        android:id="@+id/date_linear_layout_ticket_preview">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="16dp"
+            android:text="Date : "
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:id="@+id/date_ticket_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="16dp"
+            android:text="Date"
+            android:textColor="@color/black"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/date_linear_layout_ticket_preview"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:paddingTop="30dp"
+        android:id="@+id/description_linear_layout_ticket_preview"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="16dp"
+            android:text="Description : "
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:id="@+id/description_ticket_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="16dp"
+            android:text="Description"
+            android:textColor="@color/black"
+            />
+
+    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="@id/back_arrow_to_market"
         app:layout_constraintBottom_toBottomOf="@id/back_arrow_to_market"
         android:text="Market name"
-        android:id="@+id/market_name_ticket_activity"
+        android:id="@+id/title_ticket_preview"
         android:fontFamily="@font/roboto_bold"
         android:textColor="@color/black"
         android:elevation="6dp"
