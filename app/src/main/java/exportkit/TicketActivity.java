@@ -32,7 +32,7 @@ public class TicketActivity extends AppCompatActivity implements TicketAdapter.O
     private RecyclerView recyclerView;
     private ArrayList<TicketReciever> ticketArrayList;
     private TicketAdapter ticketAdapter;
-    private FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();;
+    private FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
 
 
 
@@ -89,6 +89,8 @@ public class TicketActivity extends AppCompatActivity implements TicketAdapter.O
         intent.putExtra("date",ticketArrayList.get(position).getDate());
         intent.putExtra("imageUrlArray",ticketArrayList.get(position).getImageUrlList());
         intent.putExtra("ticketId",ticketArrayList.get(position).getTicketId());
+        intent.putExtra("marketId",getIntent().getStringExtra("marketId"));
+        startActivity(intent);
     }
 
     @Override
