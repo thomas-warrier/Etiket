@@ -83,11 +83,12 @@ public class TicketActivity extends AppCompatActivity implements TicketAdapter.O
 
     @Override
     public void onTouchTicket(int position) {
-        Intent intent = new Intent(this,TicketPreviewFragment.class);
+        Intent intent = new Intent(this,TicketPreviewActivity.class);
         intent.putExtra("title",ticketArrayList.get(position).getTitle());
         intent.putExtra("description",ticketArrayList.get(position).getDescription());
-        intent.putExtra("date",ticketArrayList.get(position).getDate());
+        intent.putExtra("date",ticketArrayList.get(position).getDate().getTime());
         intent.putExtra("imageUrlArray",ticketArrayList.get(position).getImageUrlList());
+        intent.putExtra("favorite",ticketArrayList.get(position).isFavorite());
         intent.putExtra("ticketId",ticketArrayList.get(position).getTicketId());
         intent.putExtra("marketId",getIntent().getStringExtra("marketId"));
         startActivity(intent);
