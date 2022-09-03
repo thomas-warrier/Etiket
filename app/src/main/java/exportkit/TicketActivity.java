@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -22,6 +23,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import exportkit.figma.R;
 
@@ -67,8 +69,14 @@ public class TicketActivity extends AppCompatActivity implements TicketAdapter.O
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(ContentValues.TAG, document.getId() + " => " + document.getData());
+
                                 TicketReciever ticketReciever = document.toObject(TicketReciever.class);
-                                Log.d("ticketTest", "title = "+ticketReciever.getTitle());
+                                Map<String,Object> map = document.getData();
+                                ArrayList<String> imageList = (ArrayList<String>) map.get("imageArray");
+                                ticketReciever.setImageArray(imageList);
+
+
+                                Log.d("ticketTest", "title = "+ticketReciever.getDescription());
                                 ticketArrayList.add(ticketReciever); //cast the fetched document into an market object and add this market to the list
                             }
                         } else {
@@ -87,6 +95,7 @@ public class TicketActivity extends AppCompatActivity implements TicketAdapter.O
         intent.putExtra("title",ticketArrayList.get(position).getTitle());
         intent.putExtra("description",ticketArrayList.get(position).getDescription());
         intent.putExtra("date",ticketArrayList.get(position).getDate().getTime());
+        Log.d("imageUrlArrayTest", "imageurlarray in ticket "+ticketArrayList.get(position).getImageUrlList());
         intent.putExtra("imageUrlArray",ticketArrayList.get(position).getImageUrlList());
         intent.putExtra("favorite",ticketArrayList.get(position).isFavorite());
         intent.putExtra("ticketId",ticketArrayList.get(position).getTicketId());

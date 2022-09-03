@@ -1,5 +1,5 @@
 package exportkit
-
+/*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,3 +24,4 @@ class ViewPagerAdapter(private var linkImage:ArrayList<String>) : RecyclerView.A
         return linkImage.size
     }
 }
+ */

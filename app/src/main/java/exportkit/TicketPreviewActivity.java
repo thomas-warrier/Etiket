@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -46,8 +47,8 @@ public class TicketPreviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket_preview);
         Date date = new Date(getIntent().getLongExtra("date",0));
-        TicketReciever ticket = new TicketReciever(getIntent().getStringExtra("title"),getIntent().getStringExtra("description"),new Timestamp(date),getIntent().getStringArrayListExtra("imageUrlArray"),getIntent().getBooleanExtra("favorite",false),getIntent().getStringExtra("ticketId"));
-
+        TicketReciever ticket = new TicketReciever(getIntent().getStringExtra("title"),getIntent().getStringExtra("description"),new Timestamp(date),getIntent().getBooleanExtra("favorite",false),getIntent().getStringExtra("ticketId"));
+        ticket.setImageArray(getIntent().getStringArrayListExtra("imageUrlArray"));
 
         ImageButton editMode= findViewById(R.id.edit_mode_button);
         TextView title = findViewById(R.id.title_ticket_preview);
@@ -166,8 +167,9 @@ public class TicketPreviewActivity extends AppCompatActivity {
         });
 
         imageList = getIntent().getStringArrayListExtra("imageUrlArray");
+        Log.d("imageListTest", "image list :"+imageList);
         ViewPager2 viewPager2 = findViewById(R.id.view_pager_ticket_preview);
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(imageList);
+        ViewPagerAdapterJava viewPagerAdapter = new ViewPagerAdapterJava(imageList);
         viewPager2.setAdapter(viewPagerAdapter);
         viewPager2.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
 

@@ -186,28 +186,34 @@
 
             />
     </LinearLayout>
-    <androidx.viewpager2.widget.ViewPager2
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:id="@+id/view_pager_ticket_preview"
         app:layout_constraintTop_toBottomOf="@id/description_linear_layout_ticket_preview"
-        android:layout_marginTop="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-
-        />
-
-    <me.relex.circleindicator.CircleIndicator3
-        android:id="@+id/indicator_viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="@id/view_pager_ticket_preview"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:ci_drawable="@drawable/indicator_dot"
-        />
+        android:layout_marginTop="5dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/view_pager_ticket_preview"
+            />
+
+        <me.relex.circleindicator.CircleIndicator3
+            android:id="@+id/indicator_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@id/view_pager_ticket_preview"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:ci_drawable="@drawable/indicator_dot"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 

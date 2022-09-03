@@ -10,26 +10,21 @@ public class TicketReciever {
     private String title;
     private String description;
     private Date date;
-    private ArrayList<String> imageUrlList;
+    private ArrayList<String> imageArray;
     private String ticketId;
     private boolean favorite;
-
-
     public TicketReciever(){}
 
-    public TicketReciever(String title, String description, Timestamp date, ArrayList<String> imageList,boolean favorite, String ticketId) {
+    public TicketReciever(String title, String description, Timestamp date,boolean favorite, String ticketId) {
         this.date = date.toDate();
         this.title = title;
         this.description = description;
-        this.imageUrlList = imageList;
         this.favorite=favorite;
         this.ticketId=ticketId;
     }
-    public ArrayList<String> getImageList() {
-        return imageUrlList;
+    public ArrayList<String> getImageUrlList() {
+        return imageArray;
     }
-
-    public String getImage(int pos){return imageUrlList.get(pos);}
 
     public Date getDate() {
         return date;
@@ -51,8 +46,8 @@ public class TicketReciever {
         this.description = description;
     }
 
-    public ArrayList<String> getImageUrlList() {
-        return imageUrlList;
+    public void setImageArray(ArrayList<String> imageArray){
+        this.imageArray=imageArray;
     }
 
     public boolean isFavorite() {
