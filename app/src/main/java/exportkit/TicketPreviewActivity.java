@@ -2,6 +2,7 @@ package exportkit;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.view.View;
@@ -19,9 +20,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import exportkit.figma.R;
+import me.relex.circleindicator.CircleIndicator2;
+import me.relex.circleindicator.CircleIndicator3;
 
 public class TicketPreviewActivity extends AppCompatActivity {
     private static boolean editModeState = false;
@@ -29,6 +33,7 @@ public class TicketPreviewActivity extends AppCompatActivity {
     private FirebaseUser user = mAuth.getCurrentUser(); //get the user
     private String userID = user.getUid(); //ID of user
     private FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
+    private static ArrayList<String> imageList ;
 
     private String dateFormat(Date date){
         DateFormat dateFormat = new SimpleDateFormat("dd MMMM  hh:mm");
@@ -159,6 +164,16 @@ public class TicketPreviewActivity extends AppCompatActivity {
 
             }
         });
+
+        imageList = getIntent().getStringArrayListExtra("imageUrlArray");
+        ViewPager2 viewPager2 = findViewById(R.id.view_pager_ticket_preview);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(imageList);
+        viewPager2.setAdapter(viewPagerAdapter);
+        viewPager2.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
+
+
+        CircleIndicator3 indicator=(CircleIndicator3) findViewById(R.id.indicator_viewpager);
+        indicator.setViewPager(viewPager2);
 
 
 

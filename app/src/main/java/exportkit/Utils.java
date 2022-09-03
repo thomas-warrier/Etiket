@@ -70,12 +70,12 @@ public class Utils {
     }
 
 
-    public void loadPdfFromUrl(String url,final PDFView pdfView){
+    public static void loadPdfFromUrl(String url,final PDFView pdfView){
         new RetrivePDFfromUrl(pdfView).execute(url);
     }
 
     // create an async task class for loading pdf file from URL.
-    class RetrivePDFfromUrl extends AsyncTask<String, Void, InputStream> {
+    static class RetrivePDFfromUrl extends AsyncTask<String, Void, InputStream> {
         PDFView pdfView;
         public RetrivePDFfromUrl(PDFView pdfView){
             this.pdfView=pdfView;

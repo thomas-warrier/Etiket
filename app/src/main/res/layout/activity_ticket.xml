@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/roboto_regular"
+        android:fontFamily="@font/montserrat_regular"
         android:text="Vos Tickets"
         android:textColor="#6A788E"
         android:textSize="16sp"

@@ -39,7 +39,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_bold"
+                android:fontFamily="@font/montserrat_semibold"
                 android:textSize="14sp"
                 android:text="Date du dernier ticket : "
                 android:textColor="#526581"
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:text="Title"
-                android:fontFamily="@font/roboto_regular"
+                android:fontFamily="@font/montserrat_regular"
                 android:textColor="#526581"
                 />
         </LinearLayout>
