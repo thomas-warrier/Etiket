@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.barteksc.pdfviewer.PDFView;
+import com.github.barteksc.pdfviewer.util.FitPolicy;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,8 @@ public class ViewPagerAdapterJava extends RecyclerView.Adapter<ViewPagerAdapterJ
     @Override
     public void onBindViewHolder(@NonNull ViewPagerAdapterJava.Pager2ViewHolder holder, int position) {
         Utils.loadPdfFromUrl(linkImage.get(position), holder.pdfView);
+        holder.pdfView.getPageFitPolicy();
+
     }
 
     @Override
@@ -41,5 +44,6 @@ public class ViewPagerAdapterJava extends RecyclerView.Adapter<ViewPagerAdapterJ
             super(itemView);
         }
         PDFView pdfView= itemView.findViewById(R.id.pdf_view_item);
+
     }
 }
