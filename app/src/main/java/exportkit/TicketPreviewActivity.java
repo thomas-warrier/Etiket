@@ -19,7 +19,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,11 +35,7 @@ public class TicketPreviewActivity extends AppCompatActivity {
     private FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
     private static ArrayList<String> imageList ;
 
-    private String dateFormat(Date date){
-        DateFormat dateFormat = new SimpleDateFormat("dd MMMM  hh:mm");
-        String strDate = dateFormat.format(date);
-        return strDate;
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +61,7 @@ public class TicketPreviewActivity extends AppCompatActivity {
         else{
             title.setText(ticket.getTitle());
         }
-        dateText.setText(dateFormat(ticket.getDate()));
+        dateText.setText(DateFormat.dateDeduction(ticket.getDate()));
         description.setText(ticket.getDescription());
 
 

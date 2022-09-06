@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -54,13 +53,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
             holder.title.setText(ticket.getTitle());
         }
         holder.description.setText(ticket.getDescription());
-        holder.date.setText(dateFormat(ticket.getDate())); //set the content of the date with a formated date
-    }
-
-    private String dateFormat(Date date){
-        DateFormat dateFormat = new SimpleDateFormat("dd MMMM  hh:mm");
-        String strDate = dateFormat.format(date);
-        return strDate;
+        holder.date.setText(DateFormat.dateDeduction(ticket.getDate())); //set the content of the date with a formated date
     }
 
 

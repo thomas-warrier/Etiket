@@ -37,16 +37,11 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MyViewHold
         return new MyViewHolder(v,mOnTouchMarketListener);
     }
 
-    private String dateFormat(Date date){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM  hh:mm");
-        return dateFormat.format(date);
-    }
-
     @Override
     public void onBindViewHolder(@NonNull MarketAdapter.MyViewHolder holder, int position) {
         Market market = marketArrayList.get(position);
         Utils.fetchSvg(context, market.getMarketLogo(), holder.marketLogo);
-        holder.dateOfLastTicket.setText(dateFormat(market.getDateOfLastTicket())); //set the content of the date with a formated date
+        holder.dateOfLastTicket.setText(DateFormat.dateFormat(market.getDateOfLastTicket())); //set the content of the date with a formated date
     }
 
     @Override

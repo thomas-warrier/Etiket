@@ -28,4 +28,5 @@
     <string name="add_favorite">ajouter au favoris</string>
     <string name="edition_mode">mode édition</string>
     <string name="save">sauvegarder</string>
+    <string name="loading">chargement...</string>
 </resources>

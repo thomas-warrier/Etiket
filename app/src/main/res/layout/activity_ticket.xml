@@ -46,6 +46,7 @@
         android:fontFamily="@font/roboto_bold"
         android:textColor="@color/black"
         android:elevation="6dp"
+        android:background="@android:color/transparent"
         />
 
     <ImageButton
