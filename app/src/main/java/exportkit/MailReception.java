@@ -44,7 +44,6 @@ public class MailReception {
      * attachments into files on disk.
      */
 
-    private String saveDirectory;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance(); //grab the authentification instance
     private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance(); //the database
     private DatabaseReference myDBRef = mFirebaseDatabase.getReference(); //the reference (firestore)
@@ -56,14 +55,7 @@ public class MailReception {
     private static Map<String, Object> docData;
 
 
-    /**
-     * Sets the directory where attached files will be stored.
-     *
-     * @param dir absolute path of the directory
-     */
-    public void setSaveDirectory(String dir) {
-        this.saveDirectory = dir;
-    }
+
 
     /**
      * Downloads new messages and saves attachments to disk if any.

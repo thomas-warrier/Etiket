@@ -170,12 +170,11 @@ public class TicketPreviewActivity extends AppCompatActivity {
         ViewPager2 viewPager2 = findViewById(R.id.view_pager_ticket_preview);
         ViewPagerAdapterJava viewPagerAdapter = new ViewPagerAdapterJava(imageList);
         viewPager2.setAdapter(viewPagerAdapter);
+        viewPager2.setOffscreenPageLimit(imageList.size());
         viewPager2.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
-
 
         CircleIndicator3 indicator = findViewById(R.id.indicator_viewpager);
         indicator.setViewPager(viewPager2);
-
 
 
     }

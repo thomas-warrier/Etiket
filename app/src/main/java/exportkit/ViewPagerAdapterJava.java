@@ -1,5 +1,6 @@
 package exportkit;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,7 @@ public class ViewPagerAdapterJava extends RecyclerView.Adapter<ViewPagerAdapterJ
     @Override
     public void onBindViewHolder(@NonNull ViewPagerAdapterJava.Pager2ViewHolder holder, int position) {
         Utils.loadPdfFromUrl(linkImage.get(position), holder.pdfView);
-        holder.pdfView.getPageFitPolicy();
+        Log.d("TestPDF", "position create " + position);
 
     }
 
@@ -43,6 +44,7 @@ public class ViewPagerAdapterJava extends RecyclerView.Adapter<ViewPagerAdapterJ
             super(itemView);
         }
         PDFView pdfView= itemView.findViewById(R.id.pdf_view_item);
-
     }
+
+
 }
