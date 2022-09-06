@@ -14,7 +14,7 @@
 	<color name="white">#FFFFFFFF</color>
 
 	<color name="background_light">#DCEDF0</color>
-	<color name="background_dark">#0D1117</color>
+	<color name="background_dark">#010409</color>
 
 	<color name="text_light">#526581</color>
 	<color name="text_dark">#C9D1D9</color>
@@ -24,6 +24,9 @@
 
 	<color name="logo_light">#000000</color>
 	<color name="logo_dark">#B9BBBD</color>
+
+	<color name="icon_light">#6B94FF</color>
+	<color name="icon_dark">#FFFFFF</color>
 
 	<color name="_bg__homepage_ek2_color">#FFFFFF</color>
 	<color name="rectangle_4_color">#8449E5</color>

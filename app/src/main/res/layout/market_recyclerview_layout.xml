@@ -5,12 +5,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="17dp"
     app:cardElevation="5dp"
-    android:layout_margin="16dp">
+    android:layout_margin="16dp"
+
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+        >
 
         <ImageView
             android:id="@+id/image_dynamic_market_button"
@@ -22,6 +26,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginTop="15dp"
+
             />
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -43,6 +48,7 @@
                 android:textSize="14sp"
                 android:text="Date du dernier ticket : "
                 android:textColor="#526581"
+
                 />
             <TextView
                 android:id="@+id/date_dynamic_market_button"

@@ -121,9 +121,13 @@ public class TicketPreviewActivity extends AppCompatActivity {
                     editModeState=true;
                 }
                 else{
+                    if (ticket.getTitle()==null){
+                        title.setVisibility(View.GONE);
+                    }else{
+                        title.setVisibility(View.VISIBLE);
+                    }
                     titleEditText.setVisibility(View.GONE);
                     descriptionEditText.setVisibility(View.GONE);
-                    title.setVisibility(View.VISIBLE);
                     description.setVisibility(View.VISIBLE);
                     favorite.setVisibility(View.VISIBLE);
                     save.setVisibility(View.GONE);
@@ -174,7 +178,7 @@ public class TicketPreviewActivity extends AppCompatActivity {
         viewPager2.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
 
 
-        CircleIndicator3 indicator=(CircleIndicator3) findViewById(R.id.indicator_viewpager);
+        CircleIndicator3 indicator = findViewById(R.id.indicator_viewpager);
         indicator.setViewPager(viewPager2);
 
 

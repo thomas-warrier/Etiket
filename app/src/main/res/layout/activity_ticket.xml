@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="exportkit.TicketActivity">
+    tools:context="exportkit.TicketActivity"
+    android:background="?backgroundColor">
 
     <ImageView
         android:layout_width="match_parent"
@@ -72,6 +73,8 @@
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rectangle_background_ticket_activity"
+        android:background="?backgroundColor"
+
         />
     <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/your_ticket_text"
@@ -86,7 +89,7 @@
             app:layout_constraintTop_toBottomOf="@+id/your_ticket_text"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:elevation="4dp"
+            android:background="?backgroundColor"
             />
 
     </ScrollView>

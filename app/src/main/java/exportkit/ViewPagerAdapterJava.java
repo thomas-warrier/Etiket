@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.barteksc.pdfviewer.PDFView;
-import com.github.barteksc.pdfviewer.util.FitPolicy;
 
 import java.util.ArrayList;
 

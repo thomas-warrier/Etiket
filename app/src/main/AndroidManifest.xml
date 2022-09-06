@@ -8,7 +8,7 @@
 
     <application
         android:allowBackup="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:theme="@style/AppTheme">
         <activity
             android:name="exportkit.TicketPreviewActivity"
             android:exported="false" />
