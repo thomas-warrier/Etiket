@@ -56,8 +56,8 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnTouchMar
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_market, container, false);
         recyclerView = view.findViewById(R.id.recycler_view_market);
-        recyclerView.setHasFixedSize(true); //set the size
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setHasFixedSize(true);
         marketArrayList = new ArrayList<>();
         marketAdapter=new MarketAdapter(this.getContext(),marketArrayList,this);
         recyclerView.setAdapter(marketAdapter);
