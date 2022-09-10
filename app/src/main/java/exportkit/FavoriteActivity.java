@@ -36,6 +36,9 @@ public class FavoriteActivity extends AppCompatActivity implements TicketAdapter
     private TicketAdapter ticketAdapter;
     private FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
 
+    public FavoriteActivity(){
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +61,7 @@ public class FavoriteActivity extends AppCompatActivity implements TicketAdapter
             }
         });
 
-        mFirestore.collection("User").document(userID).collection("Market").document().collection("Ticket").whereEqualTo("favorite",true).orderBy("date").get()
+        mFirestore.collectionGroup("Ticket").whereEqualTo("favorite",true).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {

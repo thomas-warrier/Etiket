@@ -39,12 +39,16 @@ public class RecentTicketActivity extends AppCompatActivity implements TicketAda
     private TicketAdapter ticketAdapter;
     private FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
 
+    public RecentTicketActivity(){
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket);
         TextView activityName = findViewById(R.id.title_ticket_preview);
-        activityName.setText("Favoris");
+        activityName.setText("Ticket récent");
         mFirestore = FirebaseFirestore.getInstance();
         ticketArrayList = new ArrayList<>();
         ticketAdapter = new TicketAdapter(this,ticketArrayList,this);
@@ -61,11 +65,11 @@ public class RecentTicketActivity extends AppCompatActivity implements TicketAda
         });
 
 
-        int time = 5;
+        int time = 100;
         Calendar c1=Calendar.getInstance();
         c1.add(Calendar.DAY_OF_YEAR, -time);
         Timestamp date=new Timestamp(c1.getTime());
-        mFirestore.collection("User").document(userID).collection("Market").document().collection("Ticket").whereGreaterThanOrEqualTo("date",date).orderBy("date").get()
+        mFirestore.collectionGroup("Ticket").whereGreaterThanOrEqualTo("date",date).orderBy("date").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {

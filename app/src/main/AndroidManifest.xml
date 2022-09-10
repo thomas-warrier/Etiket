@@ -10,22 +10,22 @@
         android:allowBackup="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".FavoriteActivity"
+            android:name="exportkit.FavoriteActivity"
             android:exported="false" />
         <activity
-            android:name=".RecentTicketActivity"
+            android:name="exportkit.RecentTicketActivity"
             android:exported="false" />
         <activity
-            android:name=".TicketPreviewActivity"
+            android:name="exportkit.TicketPreviewActivity"
             android:exported="false" />
         <activity
-            android:name=".TicketActivity"
+            android:name="exportkit.TicketActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterPage"
+            android:name="exportkit.RegisterPage"
             android:exported="true" />
         <activity
-            android:name=".LoginPage"
+            android:name="exportkit.LoginPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomePage"
+            android:name="exportkit.HomePage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

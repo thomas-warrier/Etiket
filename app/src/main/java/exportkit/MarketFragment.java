@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -84,9 +86,28 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnTouchMar
                     }
                 });
 
+        ImageButton favoritePage= view.findViewById(R.id.look_favorite_ticket_button);
+        ImageButton recentTicketPage = view.findViewById(R.id.recent_ticket_button);
+
+        favoritePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),FavoriteActivity.class);
+                startActivity(intent);
+            }
+        });
+        recentTicketPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),RecentTicketActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
 
     }
+
 
     @Override
     public void onTouchMarket(int position) {
