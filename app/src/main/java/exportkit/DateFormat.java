@@ -8,6 +8,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+
+/*###################################### changer le UTC +2 #########################################################*/
 public class DateFormat {
     public static String dateFormat(Date date){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM à hh:mm",Locale.FRANCE);
