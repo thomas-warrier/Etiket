@@ -28,6 +28,8 @@
 	<color name="icon_light">#6B94FF</color>
 	<color name="icon_dark">#FFFFFF</color>
 
+	<color name="hint_light">#526581</color>
+
 	<color name="_bg__homepage_ek2_color">#FFFFFF</color>
 	<color name="rectangle_4_color">#8449E5</color>
 	<color name="etiket_color">#000000</color>

@@ -29,4 +29,5 @@
     <string name="edition_mode">mode édition</string>
     <string name="save">sauvegarder</string>
     <string name="loading">chargement...</string>
+    <string name="search">Rechercher...</string>
 </resources>

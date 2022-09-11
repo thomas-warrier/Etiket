@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -36,7 +37,7 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnTouchMar
     ArrayList<Market> marketArrayList;
     MarketAdapter marketAdapter;
     FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();;
-
+    private static boolean searchState=false;
 
     public MarketFragment() {
         // Required empty public constructor
@@ -88,6 +89,8 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnTouchMar
 
         ImageButton favoritePage= view.findViewById(R.id.look_favorite_ticket_button);
         ImageButton recentTicketPage = view.findViewById(R.id.recent_ticket_button);
+        ImageButton searchButton = view.findViewById(R.id.glass_search_button);
+        RelativeLayout searchLayout = view.findViewById(R.id.search_layout);
 
         favoritePage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +104,19 @@ public class MarketFragment extends Fragment implements MarketAdapter.OnTouchMar
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),RecentTicketActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!searchState){
+                    searchLayout.setVisibility(View.VISIBLE);
+                    searchState=true;
+                }else{
+                    searchLayout.setVisibility(View.GONE);
+                    searchState=false;
+                }
             }
         });
 

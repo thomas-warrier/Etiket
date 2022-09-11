@@ -8,5 +8,6 @@
         <item name="colorSurface">@color/background_light</item>
         <item name="backgroundColor">@color/background_light</item>
         <item name="android:colorAccent">@color/icon_light</item>
+        <item name="hintTextColor">@color/hint_light</item>
     </style>
 </resources>
