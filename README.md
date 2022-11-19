@@ -1,4 +1,4 @@
-# Etiket
+# Etiket (que j'ai renommé ViTicket par la suite)
 cette application permet d'aller chercher mes tickets de caisse numérique dans ma boite mail et les mettres en forme dans une application android
 ce projet fonctionne avec un système de compte et de syncronisation avec une base firebase
 
